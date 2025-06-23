@@ -1,0 +1,4 @@
+node_modules
+.specstory
+dist
+.DS_Store

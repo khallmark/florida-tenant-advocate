@@ -1,0 +1,75 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Orlando Tenant Advocacy Tool
+
+## Project Overview
+This is a client-side React/TypeScript application designed to help tenants in Orlando, FL understand their legal rights and defenses when facing eviction. The tool provides guidance based on Florida Statutes Chapter 83 and local resources.
+
+## Project Structure
+The main application entry point is [orlando-tenant-advocate/src/index.tsx](mdc:orlando-tenant-advocate/src/index.tsx), which renders the main [App.tsx](mdc:orlando-tenant-advocate/src/App.tsx) component.
+
+### Key Components
+- **[App.tsx](mdc:orlando-tenant-advocate/src/App.tsx)** - Main application component with navigation between Rubric and Timeline pages
+- **[Rubric.tsx](mdc:orlando-tenant-advocate/src/Rubric.tsx)** - Comprehensive tenant rights and legal defense information with collapsible sections
+- **[Timeline.tsx](mdc:orlando-tenant-advocate/src/Timeline.tsx)** - Event tracking tool for documenting eviction proceedings
+
+### Styling
+- **[style.css](mdc:orlando-tenant-advocate/src/style.css)** - All application styles with responsive design and accessibility features
+
+### Configuration Files
+- **[package.json](mdc:orlando-tenant-advocate/package.json)** - Dependencies and build scripts using pnpm and esbuild
+- **[tsconfig.json](mdc:orlando-tenant-advocate/tsconfig.json)** - TypeScript configuration
+- **[index.html](mdc:orlando-tenant-advocate/index.html)** - HTML shell that loads the React application
+
+## Technology Stack
+- **React 18** with TypeScript for component development
+- **esbuild** for fast bundling and development
+- **pnpm** for package management
+- **Vanilla CSS** with BEM-like naming conventions
+- **Client-side only** - no backend, designed for GitHub Pages deployment
+
+## Development Guidelines
+
+### Component Structure
+- Use functional components with TypeScript interfaces
+- Implement proper React hooks (useState, useEffect) for state management
+- Create reusable components like CollapsibleSection in Rubric
+- Maintain accessibility with proper ARIA labels and semantic HTML
+
+### Styling Conventions
+- Use descriptive class names (e.g., `.section-header`, `.time-critical`)
+- Implement responsive design with mobile-first approach
+- Include focus states and hover effects for accessibility
+- Use CSS custom properties for consistent theming
+
+### Data Management
+- Timeline component uses localStorage for persistence
+- JSON import/export functionality for data portability
+- No external APIs or databases - all client-side
+
+### Legal Content Guidelines
+- Include prominent legal disclaimers
+- Reference specific Florida Statutes (e.g., FL Stat § 83.56)
+- Provide local Orlando/Orange County contact information
+- Organize content by urgency and use case
+
+## Build Process
+```bash
+# Development
+pnpm run dev
+
+# Production build
+pnpm run build
+```
+
+The build process uses esbuild to bundle all assets into the `dist/` directory for deployment.
+
+## Key Features
+1. **Legal Rubric** - Interactive guide to tenant rights and defenses
+2. **Timeline Editor** - Event tracking with CRUD operations
+3. **Local Storage** - Persistent data without server requirements
+4. **Responsive Design** - Works on mobile and desktop
+5. **Accessibility** - WCAG compliant with keyboard navigation

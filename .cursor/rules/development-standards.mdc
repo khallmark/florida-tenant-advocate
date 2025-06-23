@@ -1,0 +1,85 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Development Standards & Best Practices
+
+## Code Quality Guidelines
+
+### TypeScript Standards
+- Use strict TypeScript configuration as defined in [tsconfig.json](mdc:orlando-tenant-advocate/tsconfig.json)
+- Define proper interfaces for all component props and data structures
+- Avoid `any` types - use specific types or unions instead
+- Use React.FC for functional component typing
+
+### React Best Practices
+- Prefer functional components over class components
+- Use React hooks appropriately (useState for local state, useEffect for side effects)
+- Implement proper key props for list items in Timeline component
+- Use controlled components for form inputs
+
+### CSS & Styling
+- Follow the existing patterns in [style.css](mdc:orlando-tenant-advocate/src/style.css)
+- Use semantic class names that describe purpose, not appearance
+- Maintain consistent spacing using rem units
+- Include hover and focus states for interactive elements
+- Ensure sufficient color contrast for accessibility
+
+## File Organization
+
+### Component Structure
+```
+src/
+├── index.tsx          # Entry point
+├── App.tsx           # Main router/navigation
+├── Rubric.tsx        # Legal information component
+├── Timeline.tsx      # Event tracking component
+└── style.css         # Global styles
+```
+
+### Naming Conventions
+- **Components**: PascalCase (e.g., `Timeline.tsx`, `Rubric.tsx`)
+- **CSS Classes**: kebab-case (e.g., `.section-header`, `.nav-button`)
+- **TypeScript Interfaces**: PascalCase with descriptive names
+- **Local State Variables**: camelCase
+
+## Data Handling
+
+### Local Storage
+- Timeline events stored as JSON in localStorage with key 'timeline-events'
+- Implement proper error handling for localStorage operations
+- Provide fallback behavior when localStorage is unavailable
+
+### Form Validation
+- Validate required fields before submission
+- Provide clear error messages to users
+- Use HTML5 form validation attributes where appropriate
+
+## Accessibility Requirements
+
+### WCAG Compliance
+- Use semantic HTML elements (header, main, section, etc.)
+- Provide alt text for images
+- Ensure keyboard navigation works for all interactive elements
+- Maintain proper heading hierarchy (h1 → h2 → h3)
+- Include ARIA labels where semantic HTML isn't sufficient
+
+### Focus Management
+- Visible focus indicators on all interactive elements
+- Logical tab order throughout the application
+- Focus management in modals and collapsible sections
+
+## Legal Content Standards
+
+### Disclaimer Requirements
+- Include prominent legal disclaimers on every page
+- Use clear, non-legal language where possible
+- Reference specific Florida Statutes with section numbers
+- Provide current contact information for local resources
+
+### Content Organization
+- Prioritize time-sensitive information (court deadlines)
+- Use visual cues (⚠️) for urgent actions
+- Organize by user journey (notices → defenses → court → resources)
+- Include both procedural and substantive legal information
