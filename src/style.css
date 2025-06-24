@@ -1330,9 +1330,14 @@ a:hover {
 }
 
 .statute-list-item.selected {
-    background-color: var(--primary-color);
+    background-color: #1a202c;
     color: white;
     font-weight: bold;
+}
+
+.statute-list-item.selected .statute-id,
+.statute-list-item.selected .statute-title {
+    color: white;
 }
 
 .statute-id {
@@ -1360,4 +1365,14 @@ a:hover {
     margin-top: 0;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
+}
+
+.statute-content-panel pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: monospace;
+    background-color: #f7fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
 }
