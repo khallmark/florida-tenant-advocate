@@ -1367,6 +1367,17 @@ a:hover {
     padding-bottom: 10px;
 }
 
+.statute-content-panel ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.statute-content-panel li {
+    padding-left: 2em;
+    text-indent: -2em;
+    margin-bottom: 0.5rem;
+}
+
 .statute-content-panel pre {
     white-space: pre-wrap;
     word-break: break-word;
