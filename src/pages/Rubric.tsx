@@ -86,11 +86,6 @@ const CollapsibleSubsection: React.FC<CollapsibleSubsectionProps> = ({
 const Rubric: React.FC = () => {
   return (
     <div>
-      <div className="disclaimer">
-        <strong>LEGAL DISCLAIMER:</strong> This is not legal advice and cannot replace consultation with a qualified attorney. 
-        Laws change frequently. For specific legal guidance, contact a licensed Florida attorney or legal aid organization.
-      </div>
-
       <CollapsibleSection title="1. I Received a Notice - What Kind Is It?" defaultOpen={true}>
         <div className="notice-types">
           <CollapsibleSubsection title="3-Day Notice to Pay Rent or Quit" className="notice-type" defaultOpen={true}>

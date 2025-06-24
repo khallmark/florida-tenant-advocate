@@ -25,7 +25,7 @@ export default function App() {
   }, [currentPage]);
 
   return (
-    <div className="app">
+    <div className="app-container">
       <nav className="nav">
         <div className="nav-container">
           <h1>Orlando Tenant Advocate</h1>
@@ -58,15 +58,17 @@ export default function App() {
         {currentPage === 'statutes' && <StatutePage />}
       </main>
 
-      <footer>
-        <p>
-          <strong>Legal Disclaimer:</strong> This tool provides general legal information only and is not a substitute for professional legal advice. 
-          For specific legal questions, please consult with a qualified attorney licensed in Florida.
-        </p>
-        <p>
-          Orlando Tenant Advocate Tool | Based on Florida Statutes Chapter 83 | 
-          For assistance, contact the <a href="https://cflls.org/" target="_blank" rel="noopener noreferrer">Central Florida Legal Society</a>
-        </p>
+      <footer className="footer">
+        <div className="footer-container">
+          <p>
+            <strong>Legal Disclaimer:</strong> This tool provides general legal information only and is not a substitute for professional legal advice. 
+            For specific legal questions, please consult with a qualified attorney licensed in Florida.
+          </p>
+          <p>
+            Orlando Tenant Advocate Tool | Based on Florida Statutes Chapter 83 | 
+            For assistance, contact the <a href="https://cflls.org/" target="_blank" rel="noopener noreferrer">Central Florida Legal Society</a>
+          </p>
+        </div>
       </footer>
     </div>
   );
