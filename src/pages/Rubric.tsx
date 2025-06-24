@@ -61,7 +61,7 @@ const Rubric: React.FC = () => {
       <CollapsibleSection title="1. I Received a Notice - What Kind Is It?" defaultOpen={true}>
         <div className="notice-types">
           <CollapsibleSubsection title="3-Day Notice (Non-Payment)" className="notice-type" defaultOpen={true}>
-            <p><strong>What it is:</strong> A demand for rent or possession of the property, governed by <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(3)</a>.</p>
+            <p><strong>What it is:</strong> A demand for rent or possession of the property, governed by FL Stat § 83.56(3).</p>
             <p><strong>Key points:</strong></p>
             <ul>
               <li>You have 3 business days (excluding weekends and court holidays) to pay or move out.</li>
@@ -72,7 +72,7 @@ const Rubric: React.FC = () => {
           </CollapsibleSubsection>
 
           <CollapsibleSubsection title="7-Day Notice to Cure (from Landlord)" className="notice-type">
-            <p><strong>What it is:</strong> A notice that you have violated the lease in a way that can be fixed ("cured"), per <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(2)(b)</a>.</p>
+            <p><strong>What it is:</strong> A notice that you have violated the lease in a way that can be fixed ("cured"), per FL Stat § 83.56(2)(b).</p>
             <p><strong>Key points:</strong></p>
             <ul>
               <li>Examples: Unauthorized pet, parking violations, or failing to keep the unit clean.</li>
@@ -82,7 +82,7 @@ const Rubric: React.FC = () => {
           </CollapsibleSubsection>
 
           <CollapsibleSubsection title="7-Day Termination Notice (Non-Curable)" className="notice-type">
-            <p><strong>What it is:</strong> A notice to vacate for a serious lease violation that you are not given a chance to fix, per <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(2)(a)</a>.</p>
+            <p><strong>What it is:</strong> A notice to vacate for a serious lease violation that you are not given a chance to fix, per FL Stat § 83.56(2)(a).</p>
             <p><strong>Key points:</strong></p>
             <ul>
               <li>Examples: Intentional destruction of property or creating an extreme disturbance.</li>
@@ -91,7 +91,7 @@ const Rubric: React.FC = () => {
           </CollapsibleSubsection>
           
           <CollapsibleSubsection title="Notice to Terminate Tenancy (No-Fault)" className="notice-type">
-            <p><strong>What it is:</strong> Your landlord is ending your tenancy without a specific reason, per <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.57" target="_blank" rel="noopener noreferrer">FL Stat § 83.57</a>.</p>
+            <p><strong>What it is:</strong> Your landlord is ending your tenancy without a specific reason, per FL Stat § 83.57.</p>
             <p><strong>Key points:</strong></p>
             <ul>
               <li><strong>Month-to-Month:</strong> Requires at least 30 days' written notice before the end of the monthly period.</li>
@@ -100,7 +100,7 @@ const Rubric: React.FC = () => {
           </CollapsibleSubsection>
 
           <CollapsibleSubsection title="Notice of Claim on Security Deposit" className="notice-type">
-            <p><strong>What it is:</strong> After you move out, the landlord sends this notice if they intend to keep some or all of your security deposit, per <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.49" target="_blank" rel="noopener noreferrer">FL Stat § 83.49</a>.</p>
+            <p><strong>What it is:</strong> After you move out, the landlord sends this notice if they intend to keep some or all of your security deposit, per FL Stat § 83.49.</p>
             <p><strong>Key points:</strong></p>
             <ul>
               <li>Landlord must send it within 30 days of you moving out.</li>
@@ -109,7 +109,7 @@ const Rubric: React.FC = () => {
           </CollapsibleSubsection>
 
           <CollapsibleSubsection title="Landlord's Notice of Entry" className="notice-type">
-            <p><strong>What it is:</strong> Notice that the landlord intends to enter your home, per <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.53" target="_blank" rel="noopener noreferrer">FL Stat § 83.53</a>.</p>
+            <p><strong>What it is:</strong> Notice that the landlord intends to enter your home, per FL Stat § 83.53.</p>
             <p><strong>Key points:</strong></p>
             <ul>
               <li>Requires "reasonable notice," which is defined as at least 24 hours.</li>
@@ -119,24 +119,30 @@ const Rubric: React.FC = () => {
           </CollapsibleSubsection>
         </div>
       </CollapsibleSection>
-      
+
       <CollapsibleSection title="2. I've Been Sued - What Now? (URGENT)">
         <div className="urgent-actions">
           <CollapsibleSubsection title="TIME-CRITICAL ACTIONS (You have 5 business days)" className="time-critical" defaultOpen={true}>
-            <p>Once you receive an Eviction Complaint and Summons, you have <strong>only 5 business days</strong> (excluding weekends/holidays) to respond to the court.</p>
+            <p>Once you receive an Eviction Complaint and Summons, you have <strong>only 5 business days</strong> (excluding weekends/holidays) to respond to the court. This is not a suggestion; it is a hard deadline.</p>
             <ol>
-              <li><strong>File an Answer:</strong> You must file a written response with the Clerk of Court.</li>
-              <li><strong>Pay Rent into Court Registry:</strong> If the lawsuit is for non-payment of rent, you MUST deposit the rent owed into the court registry at the time you file your answer, or file a Motion to Determine Rent. <strong>FAILURE TO DO THIS RESULTS IN AN AUTOMATIC DEFAULT EVICTION.</strong> See <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.60" target="_blank" rel="noopener noreferrer">FL Stat § 83.60(2)</a>.</li>
+              <li><strong>File an Answer:</strong> You must file a written response with the Clerk of Court. This is your only chance to tell your side of the story.</li>
+              <li>
+                <strong>Pay Rent into Court Registry:</strong> This is the most important and most unforgiving rule. If the lawsuit is for non-payment of rent, you MUST deposit the rent the landlord claims you owe into the court registry when you file your answer. 
+                <div className="warning-box">
+                  <strong>No Money = No Play = Get Evicted.</strong> Failure to pay rent into the registry is an <strong>absolute waiver</strong> of all your defenses (other than "I paid it"). The landlord can get an <strong>instant default judgment</strong> to evict you, often without any further hearing. They don't have to wait for other deadlines. Even paying a few hundred dollars and filing a motion to explain why the rest isn't due keeps you in the game. Paying nothing gets you removed from your home.
+                </div>
+                See FL Stat § 83.60(2).
+              </li>
               <li><strong>Serve the Landlord:</strong> Provide a copy of your filed documents to the landlord or their attorney.</li>
             </ol>
           </CollapsibleSubsection>
 
-          <CollapsibleSubsection title="Common Mistakes to Avoid" className="answer-help">
+          <CollapsibleSubsection title="Common & Costly Mistakes to Avoid" className="answer-help" defaultOpen={true}>
             <ul>
-              <li><strong>Missing the 5-Day Deadline:</strong> This is the most common mistake and results in an automatic loss.</li>
-              <li><strong>Not Paying Rent into the Registry:</strong> Per <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.60" target="_blank" rel="noopener noreferrer">FL Stat § 83.60(2)</a>, if you are raising any defense other than "I paid the rent," you must deposit the allegedly owed rent with the court.</li>
-              <li><strong>Not Filing a Motion to Determine Rent:</strong> If you disagree with the amount of rent the landlord claims you owe, you must file a specific motion asking the judge to determine the correct amount. You can't just write it in your answer.</li>
-              <li><strong>Ignoring the Lawsuit:</strong> Many tenants lose by default because they do nothing. You must participate in the court process.</li>
+              <li><strong>Doing Nothing:</strong> If you do nothing, you lose. Automatically. The landlord will get a default judgment and a writ of possession, and the sheriff will remove you.</li>
+              <li><strong>Not Paying Rent into the Registry:</strong> It bears repeating. <em>This is the #1 way tenants get evicted faster.</em> If you have defenses but don't deposit the rent money with the court, your defenses will not be heard.</li>
+              <li><strong>Filing a Defective Motion to Determine Rent:</strong> If you dispute the amount of rent owed, you must file a motion to have the judge determine the correct amount. You can't just say "the amount is wrong." You must attach documents or explain *why* it's wrong (e.g., "Landlord failed to credit my $500 payment on 5/15, see attached receipt").</li>
+              <li><strong>Missing the 5-Day Deadline:</strong> There are no extensions. If you file on day 6, it's too late.</li>
             </ul>
           </CollapsibleSubsection>
 
@@ -154,30 +160,62 @@ const Rubric: React.FC = () => {
 
       <CollapsibleSection title="3. Defenses to Possession">
         <div className="defenses">
-          <CollapsibleSubsection title="Procedural Defenses (The Landlord Didn't Follow the Rules)" className="defense-category" defaultOpen={true}>
-            <p>These defenses argue the landlord filed the case incorrectly. If successful, the case is usually dismissed, but the landlord can often refile it correctly.</p>
+          <CollapsibleSubsection title="Defense: Landlord Used a Defective Notice (FL Stat § 83.56)" defaultOpen={true}>
+            <p><strong>What it is:</strong> The eviction notice the landlord gave you is legally flawed. Florida law has very strict requirements for what notices must say and how they must be delivered.</p>
+            <p><strong>What to look for:</strong></p>
             <ul>
-              <li><strong>Defective Notice:</strong> The eviction notice (e.g., 3-day notice) did not meet the strict requirements of <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56</a>. (e.g., wrong amount of rent, incorrect deadline). <strong>Relief:</strong> Dismissal of eviction lawsuit.</li>
-              <li><strong>Improper Service:</strong> The notice or the lawsuit papers were not delivered to you correctly per the statutes. <strong>Relief:</strong> Dismissal of eviction lawsuit.</li>
-              <li><strong>Waiver / Acceptance of Rent:</strong> The landlord accepted rent after serving the notice, which can waive their right to evict on that notice (<a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(5)</a>). <strong>Relief:</strong> Dismissal of eviction lawsuit.</li>
+              <li><strong>3-Day Notice Errors:</strong> Does it demand charges other than rent (like late fees)? Is the deadline calculated incorrectly (it must exclude the day of delivery, weekends, and court holidays)? Does it lack the specific required language from the statute?</li>
+              <li><strong>7-Day Notice Errors:</strong> Does it fail to specify the exact lease violation? Is the delivery method wrong?</li>
             </ul>
-          </CollapsibleSubsection>
-          
-          <CollapsibleSubsection title="Substantive Defenses (The Landlord is at Fault)" className="defense-category">
-            <p>These defenses address the core issues of the case.</p>
-            <ul>
-              <li><strong>Failure to Maintain Premises (Habitability):</strong> The landlord failed to maintain the property as required by <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.51" target="_blank" rel="noopener noreferrer">FL Stat § 83.51</a>. To use this, you must have given the landlord a proper 7-day written notice to make repairs before withholding rent. <strong>Relief:</strong> This can be a complete defense to an eviction for non-payment of rent. A judge can reduce the rent you owe for the time the property was in disrepair.</li>
-              <li><strong>Retaliatory Eviction:</strong> The landlord is evicting you primarily because you exercised a legal right, such as complaining to code enforcement or organizing with other tenants (<a href="https://www.flsenate.gov/Laws/Statutes/2023/83.64" target="_blank" rel="noopener noreferrer">FL Stat § 83.64</a>). <strong>Relief:</strong> The court can deny the eviction.</li>
-               <li><strong>Prohibited Practices:</strong> The landlord engaged in illegal actions like shutting off your utilities or locking you out (<a href="https://www.flsenate.gov/Laws/Statutes/2023/83.67" target="_blank" rel="noopener noreferrer">FL Stat § 83.67</a>). <strong>Relief:</strong> You may be entitled to damages of 3 months' rent or your actual damages, whichever is greater.</li>
-            </ul>
+            <p><strong>What you must do:</strong> Raise this as an "affirmative defense" in your Answer. You should state exactly what was wrong with the notice.</p>
+            <p><strong>Potential Relief:</strong> The court will dismiss the eviction lawsuit. However, the landlord can usually just give you a new, correct notice and start the process over.</p>
           </CollapsibleSubsection>
 
-          <CollapsibleSubsection title="Other Defenses" className="defense-category">
+          <CollapsibleSubsection title="Defense: Landlord Accepted Rent After Notice (Waiver) (FL Stat § 83.56(5))">
+            <p><strong>What it is:</strong> The landlord may have waived the right to evict you on a specific notice because they accepted rent from you *after* giving you the notice.</p>
+            <p><strong>What you must have done:</strong> You must have a record of paying rent (full or partial) *after* the date on the termination notice. Keep bank statements, receipts, or canceled checks.</p>
+            <p><strong>Important Exception:</strong> If the landlord accepted *partial* rent, they can still proceed IF they gave you a receipt stating the new balance due, posted a new 3-day notice for the remaining amount, or deposited the partial rent into the court registry when they filed the eviction.</p>
+            <p><strong>What you must do:</strong> Raise this as an "affirmative defense" in your Answer, stating the date and amount of rent paid and accepted by the landlord.</p>
+            <p><strong>Potential Relief:</strong> Dismissal of the eviction lawsuit for that specific notice.</p>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="Defense: Failure to Maintain Premises / Uninhabitable Conditions (FL Stat § 83.51 & 83.60)">
+            <p><strong>What it is:</strong> The landlord has failed to maintain the property as required by law, and the conditions are bad enough to affect your ability to live there. This is one of the most powerful but procedurally difficult defenses.</p>
+            <p><strong>What you must have done (THIS IS CRITICAL):</strong></p>
+            <ol>
+              <li>You must have sent a <strong>7-day written notice</strong> to your landlord, preferably by certified mail.</li>
+              <li>This notice must describe the specific problems (e.g., "the roof leaks in the bedroom," "there is no hot water").</li>
+              <li>The notice must state your intention to withhold rent if the repairs are not made within 7 days.</li>
+              <li>The landlord must have failed to make the repairs within those 7 days.</li>
+            </ol>
+            <p><strong>How to use it:</strong> Raise this as an "affirmative defense" in your Answer. Remember, you MUST pay the rent you withheld into the court registry. The judge will then decide how much your rent should be reduced because of the bad conditions.</p>
+            <p><strong>Potential Relief:</strong> This can be a complete defense to an eviction for non-payment. The court can reduce the rent you owe or find that you owe nothing.</p>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="Defense: Retaliatory Eviction (FL Stat § 83.64)">
+            <p><strong>What it is:</strong> The landlord is trying to evict you not for a legitimate reason, but because you exercised a legal right.</p>
+            <p><strong>What you must have done:</strong> You must have acted in good faith when you did one of the following:
+              <ul>
+                <li>Complained to a government agency (like code enforcement) about a violation.</li>
+                <li>Organized or participated in a tenants' union.</li>
+                <li>Complained to the landlord about their failure to maintain the property (e.g., you sent the 7-day notice described above).</li>
+              </ul>
+            </p>
+            <p><strong>What you must do:</strong> Raise this as an "affirmative defense." You will need to show a connection between your protected action and the landlord's decision to evict you.</p>
+            <p><strong>Potential Relief:</strong> The court can deny the eviction.</p>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="Defense: Prohibited Practices (FL Stat § 83.67)">
+            <p><strong>What it is:</strong> The landlord has engaged in illegal "self-help" eviction tactics.</p>
+            <p><strong>What the landlord cannot do:</strong></p>
             <ul>
-              <li><strong>Rent Was Paid:</strong> You have proof that you paid the rent the landlord is suing for. <strong>Relief:</strong> Eviction is denied.</li>
-              <li><strong>Discrimination:</strong> The eviction is based on your race, religion, sex, disability, familial status, or other protected class under the Fair Housing Act. <strong>Relief:</strong> Eviction is denied, and you may have claims for damages.</li>
-              <li><strong>Improper Security Deposit Claim:</strong> If the eviction is about charges related to a security deposit, you can defend if the landlord did not follow the strict notice rules in <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.49" target="_blank" rel="noopener noreferrer">FL Stat § 83.49</a>. <strong>Relief:</strong> Landlord may lose the right to claim the deposit.</li>
+              <li>Shut off your utilities (water, electricity, etc.).</li>
+              <li>Change the locks or prevent you from accessing your home.</li>
+              <li>Remove your personal property from the unit.</li>
+              <li>Remove the doors or windows.</li>
             </ul>
+            <p><strong>What you must do:</strong> This is both a defense to eviction and a basis for your own lawsuit (a "counterclaim"). You should document these actions thoroughly with photos, videos, and police reports if applicable.</p>
+            <p><strong>Potential Relief:</strong> The court can deny the eviction and award you damages of 3 months' rent or your actual damages, whichever is greater, plus attorney's fees.</p>
           </CollapsibleSubsection>
 
           <CollapsibleSubsection title="⚠️ Important Reminders" className="defense-category">
@@ -190,6 +228,16 @@ const Rubric: React.FC = () => {
             </ul>
           </CollapsibleSubsection>
         </div>
+      </CollapsibleSection>
+
+      <CollapsibleSection title="4. Florida Statutes Reference">
+        <p>
+          The full text of the Florida Residential Landlord & Tenant Act (Florida Statutes, Chapter 83, Part II) is available for your reference. 
+          While this tool summarizes key parts, you can read the specific laws to understand them in detail.
+        </p>
+        <p>
+          <a href="/statutes">View Full Statutes</a>
+        </p>
       </CollapsibleSection>
     </div>
   );
