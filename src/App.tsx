@@ -49,6 +49,17 @@ export default function App() {
         {currentPage === 'rubric' && <Rubric />}
         {currentPage === 'timeline' && <Timeline />}
       </main>
+
+      <footer>
+        <p>
+          <strong>Legal Disclaimer:</strong> This tool provides general legal information only and is not a substitute for professional legal advice. 
+          For specific legal questions, please consult with a qualified attorney licensed in Florida.
+        </p>
+        <p>
+          Orlando Tenant Advocate Tool | Based on Florida Statutes Chapter 83 | 
+          For assistance, contact the <a href="https://cflls.org/" target="_blank" rel="noopener noreferrer">Central Florida Legal Society</a>
+        </p>
+      </footer>
     </div>
   );
 } 
