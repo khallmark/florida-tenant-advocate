@@ -1,7 +1,7 @@
 import React from 'react';
-import ThreeDayNoticeForm from './ThreeDayNoticeForm';
-import Tooltip from './components/Tooltip';
-import Button from './components/Button';
+import ThreeDayNoticeForm from './TimelineEventForm/ThreeDayNoticeForm';
+import Tooltip from '../components/Tooltip';
+import Button from '../components/Button';
 import { FormData, EVENT_TYPES, getTimezoneForDate, formatTimeForDisplay } from './TimelineRepository';
 
 interface TimelineEventFormProps {

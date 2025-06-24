@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TimelineEventForm from './TimelineEventForm';
+import TimelineEventForm from './Timeline/TimelineEventForm';
 import Tooltip from './components/Tooltip';
 import Button from './components/Button';
 import { 
@@ -8,7 +8,7 @@ import {
   FormData, 
   formatDateForDisplay,
   formatTimeForDisplay
-} from './TimelineRepository';
+} from './Timeline/TimelineRepository';
 
 export default function Timeline() {
   const [events, setEvents] = useState<TimelineEvent[]>([]);

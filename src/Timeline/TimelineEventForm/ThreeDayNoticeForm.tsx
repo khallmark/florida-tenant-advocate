@@ -1,5 +1,5 @@
-import Tooltip from './components/Tooltip';
-import { checkNoticeCompliance, calculateCorrectNoticeDate, formatDateForDisplay, FormData } from './TimelineRepository';
+import Tooltip from '../../components/Tooltip';
+import { checkNoticeCompliance, calculateCorrectNoticeDate, formatDateForDisplay, FormData } from '../TimelineRepository';
 
 interface ThreeDayNoticeFormProps {
   eventType: string;
