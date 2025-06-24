@@ -448,6 +448,58 @@ footer a {
     border: 1px solid #e9ecef;
 }
 
+/* Large screen expansions for events table */
+@media (min-width: 1400px) {
+    .events-section {
+        max-width: none;
+        width: 100%;
+    }
+
+    .events-table-container {
+        width: 100%;
+    }
+
+    .events-table {
+        width: 100%;
+        table-layout: auto;
+    }
+}
+
+@media (min-width: 1800px) {
+    .main-content {
+        max-width: none;
+        padding: 0 2rem;
+    }
+
+    .events-table th,
+    .events-table td {
+        padding: 1rem 0.75rem;
+        font-size: 1rem;
+    }
+
+    /* Expand specific columns on huge screens */
+    .events-table th:nth-child(5),
+    /* Description column */
+    .events-table td:nth-child(5) {
+        width: 25%;
+        min-width: 300px;
+    }
+
+    .events-table th:nth-child(6),
+    /* Notice Details column */
+    .events-table td:nth-child(6) {
+        width: 20%;
+        min-width: 250px;
+    }
+
+    .events-table th:nth-child(4),
+    /* Label column */
+    .events-table td:nth-child(4) {
+        width: 15%;
+        min-width: 200px;
+    }
+}
+
 .events-table {
     width: 100%;
     border-collapse: collapse;
