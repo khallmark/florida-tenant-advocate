@@ -23,6 +23,7 @@ import {
   updateEvent
 } from './Timeline/TimelineRepository';
 import TimelineEventRenderer from './Timeline/TimelineEvent/TimelineEventRenderer';
+import { CollapsibleSection } from '../components/Collapsible';
 
 export default function Timeline() {
   const [events, setEvents] = useState<TimelineEvent[]>([]);
@@ -128,6 +129,30 @@ export default function Timeline() {
         Track important events in your case. Hover over the info icon next to each field 
         for specific guidance. Use {isMac ? 'Cmd+Enter' : 'Ctrl+Enter'} to quickly submit forms.
       </p>
+
+      <CollapsibleSection title="How to Use the Timeline Tool">
+        <div className="feature-explanation">
+          <p>
+            The <strong>Timeline Tool</strong> is designed to help you create a detailed, chronological record of all events related to your tenancy and eviction case. Proper documentation is critical for defending your rights.
+          </p>
+          <h4>Key Features:</h4>
+          <ul>
+            <li><strong>Event Tracking:</strong> Log every interaction, notice, payment, and communication. The tool automatically calculates critical deadlines based on the dates you provide.</li>
+            <li><strong>Notice Analysis:</strong> When you enter a notice from your landlord (like a 3-Day Notice for rent), the tool analyzes it for compliance with Florida law, such as checking if the deadline is calculated correctly.</li>
+            <li><strong>Data Management:</strong> Your timeline is saved securely in your browser's local storage. You can also export it to a JSON file for your records or to share with an attorney, and import it on another device.</li>
+          </ul>
+          <h4>How to Use the Timeline:</h4>
+          <ol>
+            <li>Click "Add New Event" below to open the form.</li>
+            <li>Select the `Event Type` that best matches your situation. Different forms will appear for specific legal notices.</li>
+            <li>Fill in all required fields. The more detail you provide, the stronger your record will be.</li>
+            <li>The tool will display analysis and calculated dates (e.g., "Objection Due Date") directly on the timeline event.</li>
+          </ol>
+          <p>
+            Use this tool to build a comprehensive history. If you end up in court, this timeline will be an invaluable resource for you and your legal representative.
+          </p>
+        </div>
+      </CollapsibleSection>
 
       {error && (
         <div className="error-message">
