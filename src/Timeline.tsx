@@ -2,35 +2,53 @@ import React, { useState, useEffect } from 'react';
 import TimelineEventForm from './Timeline/TimelineEventForm';
 import Tooltip from './components/Tooltip';
 import Button from './components/Button';
+import Modal from './components/Modal';
 import { 
-  TimelineRepository, 
   TimelineEvent, 
   FormData, 
-  formatDateForDisplay,
-  formatTimeForDisplay
+  loadEvents, 
+  saveEvents, 
+  addEvent, 
+  replaceEvent, 
+  deleteEvent, 
+  eventToFormData, 
+  initialFormData, 
+  exportToJson, 
+  importFromJson, 
+  formatTimeForDisplay,
+  createEvent,
+  updateEvent
 } from './Timeline/TimelineRepository';
 
 export default function Timeline() {
   const [events, setEvents] = useState<TimelineEvent[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState<FormData>(initialFormData());
+  const [modalFormData, setModalFormData] = useState<FormData>(initialFormData());
   const [editingEvent, setEditingEvent] = useState<TimelineEvent | null>(null);
-  
-  // Form data for main create form
-  const [formData, setFormData] = useState<FormData>(TimelineRepository.createEmptyFormData());
+  const [error, setError] = useState<string | null>(null);
 
-  // Separate state for modal form
-  const [modalFormData, setModalFormData] = useState<FormData>(TimelineRepository.createEmptyFormData());
-
-  // Load events from localStorage on component mount
   useEffect(() => {
-    const loadedEvents = TimelineRepository.loadEvents();
-    setEvents(loadedEvents);
+    setEvents(loadEvents());
   }, []);
 
-  // Save events to localStorage whenever events change
   useEffect(() => {
-    TimelineRepository.saveEvents(events);
+    saveEvents(events);
   }, [events]);
+
+  const resetForm = () => {
+    setFormData(initialFormData());
+  };
+
+  const resetModalForm = () => {
+    setModalFormData(initialFormData());
+    setEditingEvent(null);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    resetModalForm();
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,8 +58,8 @@ export default function Timeline() {
       return;
     }
 
-    const newEvent = TimelineRepository.createEvent(formData);
-    const updatedEvents = TimelineRepository.addEvent(events, newEvent);
+    const newEvent = createEvent(formData);
+    const updatedEvents = addEvent(events, newEvent);
     setEvents(updatedEvents);
     resetForm();
   };
@@ -54,51 +72,34 @@ export default function Timeline() {
       return;
     }
 
-    const updatedEvent = TimelineRepository.updateEvent(editingEvent, modalFormData);
-    const updatedEvents = TimelineRepository.replaceEvent(events, updatedEvent);
+    const updatedEvent = updateEvent(editingEvent, modalFormData);
+    const updatedEvents = replaceEvent(events, updatedEvent);
     setEvents(updatedEvents);
-    
-    setIsModalOpen(false);
-    setEditingEvent(null);
-    resetModalForm();
-  };
-
-  const resetForm = () => {
-    setFormData(TimelineRepository.createEmptyFormData());
-  };
-
-  const resetModalForm = () => {
-    setModalFormData(TimelineRepository.createEmptyFormData());
+    closeModal();
   };
 
   const handleEdit = (event: TimelineEvent) => {
     setEditingEvent(event);
-    setModalFormData(TimelineRepository.eventToFormData(event));
+    setModalFormData(eventToFormData(event));
     setIsModalOpen(true);
   };
 
   const handleDelete = (id: string) => {
-    const updatedEvents = TimelineRepository.deleteEvent(events, id);
-    setEvents(updatedEvents);
-  };
-
-  const exportData = () => {
-    TimelineRepository.exportToJson(events);
-  };
-
-  const importData = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const importedEvents = await TimelineRepository.importFromJson(file);
-      setEvents(importedEvents);
-      alert('Timeline data imported successfully!');
-    } catch (error) {
-      alert(`Failed to import timeline data: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    if (window.confirm('Are you sure you want to delete this event?')) {
+      const updatedEvents = deleteEvent(events, id);
+      setEvents(updatedEvents);
     }
-    
-    // Reset the file input
+  };
+
+  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      importFromJson(file)
+        .then(importedEvents => {
+          setEvents(prevEvents => [...prevEvents, ...importedEvents]);
+        })
+        .catch(err => setError(err.message));
+    }
     e.target.value = '';
   };
 
@@ -124,6 +125,13 @@ export default function Timeline() {
         for specific guidance. Use {isMac ? 'Cmd+Enter' : 'Ctrl+Enter'} to quickly submit forms.
       </p>
 
+      {error && (
+        <div className="error-message">
+          {error} 
+          <Button onClick={() => setError(null)}>&times;</Button>
+        </div>
+      )}
+
       {/* Main Create Form */}
       <TimelineEventForm
         formData={formData}
@@ -132,7 +140,6 @@ export default function Timeline() {
         onKeyDown={handleKeyDown}
         buttonText="Add Event"
         isModal={false}
-        isEditing={false}
       />
 
       {/* Import/Export */}
@@ -140,7 +147,7 @@ export default function Timeline() {
         <Button 
           type="button" 
           variant="secondary"
-          onClick={exportData}
+          onClick={() => exportToJson(events)}
         >
           Export Timeline Data
         </Button>
@@ -151,7 +158,7 @@ export default function Timeline() {
           <input
             type="file"
             accept=".json"
-            onChange={importData}
+            onChange={handleImport}
             style={{ display: 'none' }}
           />
         </label>
@@ -192,20 +199,24 @@ export default function Timeline() {
                     </td>
                     <td>
                       <div className="datetime-cell">
-                        <div className="date">{formatDateForDisplay(event.date)}</div>
-                        <div className="time">
-                          {formatTimeForDisplay(event.time || '12:00')} {event.timezone || 'EST'}
-                        </div>
+                        <div className="date">{new Date(event.date + 'T12:00:00').toDateString()}</div>
+                        {event.time && (
+                          <div className="time">
+                            {formatTimeForDisplay(event.time)} {event.timezone}
+                          </div>
+                        )}
                       </div>
                     </td>
                     <td>{event.eventType}</td>
                     <td>{event.label}</td>
                     <td>{event.description}</td>
                     <td>
-                      {event.noticeFields ? (
+                      {event.noticeFields?.requiredNoticeDate ? (
                         <div className="notice-details">
-                          <div><strong>Notice Says Due:</strong> {formatDateForDisplay(event.noticeFields.requiredNoticeDate)}</div>
-                          <div><strong>Should Have Said:</strong> {formatDateForDisplay(event.noticeFields.calculatedCorrectDate)}</div>
+                          <div><strong>Notice Says Due:</strong> {new Date(event.noticeFields.requiredNoticeDate + 'T12:00:00').toDateString()}</div>
+                          {event.noticeFields.calculatedCorrectDate && (
+                            <div><strong>Should Have Said:</strong> {new Date(event.noticeFields.calculatedCorrectDate + 'T12:00:00').toDateString()}</div>
+                          )}
                         </div>
                       ) : (
                         '—'
@@ -239,27 +250,24 @@ export default function Timeline() {
 
       {/* Edit Modal */}
       {isModalOpen && editingEvent && (
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>Edit Event</h2>
-            <TimelineEventForm
-              formData={modalFormData}
-              setFormData={setModalFormData}
-              onSubmit={handleModalSubmit}
-              onKeyDown={handleModalKeyDown}
-              buttonText="Update Event"
-              isModal={true}
-              isEditing={true}
-            />
-            <Button 
-              type="button" 
-              onClick={() => setIsModalOpen(false)}
-              variant="secondary"
-            >
-              Cancel
-            </Button>
-          </div>
-        </div>
+        <Modal onClose={closeModal}>
+          <h2>Edit Event</h2>
+          <TimelineEventForm
+            formData={modalFormData}
+            setFormData={setModalFormData}
+            onSubmit={handleModalSubmit}
+            onKeyDown={handleModalKeyDown}
+            buttonText="Update Event"
+            isModal={true}
+          />
+          <Button 
+            type="button" 
+            onClick={closeModal}
+            variant="secondary"
+          >
+            Cancel
+          </Button>
+        </Modal>
       )}
     </div>
   );

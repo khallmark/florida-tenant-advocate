@@ -15,10 +15,23 @@ export interface TimelineEvent {
   eventType: string;
   label: string;
   description: string;
-  noticeFields?: NoticeFields;
+  noticeFields?: {
+    requiredNoticeDate?: string;
+    calculatedCorrectDate?: string;
+    isCompliant?: boolean;
+    complianceNotes?: string;
+  };
+  sevenDayCureFields?: Partial<FormData['sevenDayCureFields']>;
+  sevenDayTerminationFields?: Partial<FormData['sevenDayTerminationFields']>;
+  sevenDayNoticeToTerminateFields?: Partial<FormData['sevenDayNoticeToTerminateFields']>;
+  sevenDayNoticeToWithholdRentFields?: Partial<FormData['sevenDayNoticeToWithholdRentFields']>;
+  claimOnDepositFields?: Partial<FormData['claimOnDepositFields']>;
+  landlordNoticeOfEntryFields?: Partial<FormData['landlordNoticeOfEntryFields']>;
+  evictionComplaintFields?: Partial<FormData['evictionComplaintFields']>;
 }
 
 export interface FormData {
+  id: string;
   date: string;
   time: string;
   eventType: string;
@@ -26,6 +39,38 @@ export interface FormData {
   description: string;
   noticeFields: {
     requiredNoticeDate: string;
+  };
+  sevenDayCureFields: {
+    deliveryMethod: string;
+    noncomplianceDescription: string;
+  };
+  sevenDayTerminationFields: {
+    deliveryMethod: string;
+    noncomplianceDescription: string;
+  };
+  sevenDayNoticeToTerminateFields: {
+    deliveryMethod: string;
+    noncomplianceDescription: string;
+  };
+  sevenDayNoticeToWithholdRentFields: {
+    deliveryMethod: string;
+    noncomplianceDescription: string;
+  };
+  claimOnDepositFields: {
+    moveOutDate: string;
+    noticeReceivedDate: string;
+    claimAmount: string;
+    claimReason: string;
+  };
+  landlordNoticeOfEntryFields: {
+    noticeGivenDateTime: string;
+    proposedEntryDateTime: string;
+    purposeOfEntry: string;
+  };
+  evictionComplaintFields: {
+    serviceMethod: string;
+    rentAmountDemanded: string;
+    caseNumber: string;
   };
 }
 
@@ -39,16 +84,17 @@ export interface ComplianceResult {
 export const EVENT_TYPES = [
   '',
   '3-Day Notice (Non-Payment)',
-  '7-Day Notice (Cure)',
-  '7-Day Notice (Unconditional Quit)',
-  '30-Day Notice (Non-Renewal)',
-  'Email',
-  'Phone Call',
-  'Court Filing',
-  'Payment Made',
-  'Property Inspection',
-  'Repair Request',
-  'Other'
+  '7-Day Notice to Cure (from Landlord)',
+  '7-Day Termination Notice (Non-Curable)',
+  '7-Day Notice of Noncompliance (to Terminate)',
+  '7-Day Notice of Noncompliance (to Withhold Rent)',
+  'Notice of Claim on Security Deposit',
+  'Landlord\'s Notice of Entry',
+  'Eviction Complaint and Summons',
+  'Rent Payment',
+  'Communication with Landlord',
+  'Maintenance Request',
+  'Other',
 ];
 
 // Florida Court Holidays (official schedule)
@@ -177,6 +223,26 @@ export const calculateCorrectNoticeDate = (deliveryDate: string): string => {
   return calculatedCorrect.toISOString().split('T')[0];
 };
 
+export const calculateCureDate = (deliveryDate: string): string => {
+  if (!deliveryDate) return '';
+  return addBusinessDays(new Date(deliveryDate + 'T12:00:00'), 7).toISOString().split('T')[0];
+};
+
+export const calculateVacateDate = (deliveryDate: string): string => {
+  if (!deliveryDate) return '';
+  return addBusinessDays(new Date(deliveryDate + 'T12:00:00'), 7).toISOString().split('T')[0];
+};
+
+export const calculateObjectionDueDate = (receivedDate: string): string => {
+  if (!receivedDate) return '';
+  return addBusinessDays(new Date(receivedDate + 'T12:00:00'), 15).toISOString().split('T')[0];
+};
+
+export const calculateCourtRegistryDueDate = (servedDate: string): string => {
+  if (!servedDate) return '';
+  return addBusinessDays(new Date(servedDate + 'T12:00:00'), 5).toISOString().split('T')[0];
+};
+
 export const checkNoticeCompliance = (deliveryDate: string, noticeDueDate: string): ComplianceResult => {
   if (!deliveryDate || !noticeDueDate) {
     return { 
@@ -224,155 +290,229 @@ export const createNoticeFields = (eventType: string, date: string, requiredNoti
   return undefined;
 };
 
-// TimelineRepository Class
-export class TimelineRepository {
-  private static readonly STORAGE_KEY = 'timeline-events';
+/**
+ * Calculates the difference in days between two date strings.
+ * @param dateStr1 The first date string.
+ * @param dateStr2 The second date string.
+ * @returns The number of days between the two dates.
+ */
+export const calculateDateDifference = (dateStr1: string, dateStr2: string): number => {
+  const date1 = new Date(dateStr1).getTime();
+  const date2 = new Date(dateStr2).getTime();
+  const differenceInTime = Math.abs(date1 - date2);
+  return Math.ceil(differenceInTime / (1000 * 3600 * 24));
+};
 
-  // Load events from localStorage
-  static loadEvents(): TimelineEvent[] {
-    const saved = localStorage.getItem(this.STORAGE_KEY);
-    if (saved) {
-      try {
-        const events = JSON.parse(saved);
-        return Array.isArray(events) ? events : [];
-      } catch (e) {
-        console.error('Failed to parse saved events:', e);
-        return [];
-      }
+// --- Repository Functions ---
+
+const STORAGE_KEY = 'timeline-events';
+
+// Load events from localStorage
+export function loadEvents(): TimelineEvent[] {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    try {
+      const events = JSON.parse(saved);
+      return Array.isArray(events) ? events : [];
+    } catch (e) {
+      console.error('Failed to parse saved events:', e);
+      return [];
     }
-    return [];
   }
+  return [];
+}
 
-  // Save events to localStorage
-  static saveEvents(events: TimelineEvent[]): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(events));
-  }
+// Save events to localStorage
+export function saveEvents(events: TimelineEvent[]): void {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+}
 
-  // Sort events by date
-  static sortEventsByDate(events: TimelineEvent[]): TimelineEvent[] {
-    return [...events].sort((a, b) => 
-      new Date(a.date).getTime() - new Date(b.date).getTime()
-    );
-  }
+// Sort events by date
+export function sortEventsByDate(events: TimelineEvent[]): TimelineEvent[] {
+  return [...events].sort((a, b) => 
+    new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+}
 
-  // Create a new event
-  static createEvent(formData: FormData): TimelineEvent {
-    const noticeFields = createNoticeFields(
-      formData.eventType,
-      formData.date,
-      formData.noticeFields.requiredNoticeDate
-    );
+// Create a new event
+export function createEvent(formData: FormData): TimelineEvent {
+  const event: TimelineEvent = {
+    id: Date.now().toString(),
+    date: formData.date,
+    time: formData.time,
+    timezone: getTimezoneForDate(formData.date),
+    eventType: formData.eventType,
+    label: formData.label,
+    description: formData.description,
+  };
 
-    return {
-      id: Date.now().toString(),
-      date: formData.date,
-      time: formData.time,
-      timezone: getTimezoneForDate(formData.date),
-      eventType: formData.eventType,
-      label: formData.label,
-      description: formData.description,
-      ...(noticeFields && { noticeFields })
+  if (formData.eventType === '3-Day Notice (Non-Payment)') {
+    const compliance = checkNoticeCompliance(formData.date, formData.noticeFields.requiredNoticeDate);
+    event.noticeFields = {
+      requiredNoticeDate: formData.noticeFields.requiredNoticeDate,
+      calculatedCorrectDate: compliance.calculatedCorrectDate,
+      isCompliant: compliance.isCompliant,
+      complianceNotes: compliance.notes
     };
+  } else {
+    event.noticeFields = formData.noticeFields;
   }
+  
+  event.sevenDayCureFields = formData.sevenDayCureFields;
+  event.sevenDayTerminationFields = formData.sevenDayTerminationFields;
+  event.sevenDayNoticeToTerminateFields = formData.sevenDayNoticeToTerminateFields;
+  event.sevenDayNoticeToWithholdRentFields = formData.sevenDayNoticeToWithholdRentFields;
+  event.claimOnDepositFields = formData.claimOnDepositFields;
+  event.landlordNoticeOfEntryFields = formData.landlordNoticeOfEntryFields;
+  event.evictionComplaintFields = formData.evictionComplaintFields;
 
-  // Update an existing event
-  static updateEvent(existingEvent: TimelineEvent, formData: FormData): TimelineEvent {
-    const noticeFields = createNoticeFields(
-      formData.eventType,
-      formData.date,
-      formData.noticeFields.requiredNoticeDate
-    );
+  return event;
+}
 
-    return {
-      id: existingEvent.id,
-      date: formData.date,
-      time: formData.time,
-      timezone: getTimezoneForDate(formData.date),
-      eventType: formData.eventType,
-      label: formData.label,
-      description: formData.description,
-      ...(noticeFields && { noticeFields })
-    };
-  }
+// Update an existing event
+export function updateEvent(existingEvent: TimelineEvent, formData: FormData): TimelineEvent {
+  const updatedEvent = createEvent(formData);
+  updatedEvent.id = existingEvent.id; // Keep the original ID
+  return updatedEvent;
+}
 
-  // Add event to events array
-  static addEvent(events: TimelineEvent[], newEvent: TimelineEvent): TimelineEvent[] {
-    const updatedEvents = [...events, newEvent];
-    return this.sortEventsByDate(updatedEvents);
-  }
+// Add event to events array
+export function addEvent(events: TimelineEvent[], newEvent: TimelineEvent): TimelineEvent[] {
+  const updatedEvents = [...events, newEvent];
+  return sortEventsByDate(updatedEvents);
+}
 
-  // Update event in events array
-  static replaceEvent(events: TimelineEvent[], updatedEvent: TimelineEvent): TimelineEvent[] {
-    const updatedEvents = events.map(event => 
-      event.id === updatedEvent.id ? updatedEvent : event
-    );
-    return this.sortEventsByDate(updatedEvents);
-  }
+// Update event in events array
+export function replaceEvent(events: TimelineEvent[], updatedEvent: TimelineEvent): TimelineEvent[] {
+  const updatedEvents = events.map(event => 
+    event.id === updatedEvent.id ? updatedEvent : event
+  );
+  return sortEventsByDate(updatedEvents);
+}
 
-  // Delete event from events array
-  static deleteEvent(events: TimelineEvent[], eventId: string): TimelineEvent[] {
-    return events.filter(event => event.id !== eventId);
-  }
+// Delete event from events array
+export function deleteEvent(events: TimelineEvent[], eventId: string): TimelineEvent[] {
+  return events.filter(event => event.id !== eventId);
+}
 
-  // Export events to JSON
-  static exportToJson(events: TimelineEvent[]): void {
-    const dataStr = JSON.stringify(events, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'timeline-events.json';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }
+// Export events to JSON
+export function exportToJson(events: TimelineEvent[]): void {
+  const dataStr = JSON.stringify(events, null, 2);
+  const dataBlob = new Blob([dataStr], { type: 'application/json' });
+  const url = URL.createObjectURL(dataBlob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'timeline-events.json';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
 
-  // Import events from JSON file
-  static importFromJson(file: File): Promise<TimelineEvent[]> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        try {
-          const importedEvents = JSON.parse(event.target?.result as string);
-          if (Array.isArray(importedEvents)) {
-            resolve(this.sortEventsByDate(importedEvents));
-          } else {
-            reject(new Error('Invalid file format'));
-          }
-        } catch (error) {
-          reject(new Error('Failed to parse JSON file'));
+// Import events from JSON file
+export function importFromJson(file: File): Promise<TimelineEvent[]> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const importedEvents = JSON.parse(event.target?.result as string);
+        if (Array.isArray(importedEvents)) {
+          resolve(sortEventsByDate(importedEvents));
+        } else {
+          reject(new Error('Invalid file format'));
         }
-      };
-      reader.readAsText(file);
-    });
-  }
-
-  // Create empty form data
-  static createEmptyFormData(): FormData {
-    return {
-      date: '',
-      time: '12:00',
-      eventType: EVENT_TYPES[0],
-      label: '',
-      description: '',
-      noticeFields: {
-        requiredNoticeDate: ''
+      } catch (error) {
+        reject(new Error('Failed to parse JSON file'));
       }
     };
-  }
+    reader.readAsText(file);
+  });
+}
 
-  // Convert event to form data for editing
-  static eventToFormData(event: TimelineEvent): FormData {
-    return {
-      date: event.date,
-      time: event.time || '12:00',
-      eventType: event.eventType,
-      label: event.label,
-      description: event.description,
-      noticeFields: {
-        requiredNoticeDate: event.noticeFields?.requiredNoticeDate || ''
-      }
-    };
-  }
+// Create empty form data
+export function initialFormData(): FormData {
+  return {
+    id: '',
+    date: '',
+    time: '12:00',
+    eventType: EVENT_TYPES[0],
+    label: '',
+    description: '',
+    noticeFields: {
+      requiredNoticeDate: ''
+    },
+    sevenDayCureFields: {
+      deliveryMethod: '',
+      noncomplianceDescription: '',
+    },
+    sevenDayTerminationFields: {
+      deliveryMethod: '',
+      noncomplianceDescription: '',
+    },
+    sevenDayNoticeToTerminateFields: {
+      deliveryMethod: '',
+      noncomplianceDescription: '',
+    },
+    sevenDayNoticeToWithholdRentFields: {
+      deliveryMethod: '',
+      noncomplianceDescription: '',
+    },
+    claimOnDepositFields: {
+      moveOutDate: '',
+      noticeReceivedDate: '',
+      claimAmount: '',
+      claimReason: '',
+    },
+    landlordNoticeOfEntryFields: {
+      noticeGivenDateTime: '',
+      proposedEntryDateTime: '',
+      purposeOfEntry: '',
+    },
+    evictionComplaintFields: {
+      serviceMethod: '',
+      rentAmountDemanded: '',
+      caseNumber: '',
+    },
+  };
+}
+
+// Convert event to form data for editing
+export function eventToFormData(event: TimelineEvent): FormData {
+  const emptyForm = initialFormData();
+  return {
+    ...emptyForm,
+    ...event,
+    noticeFields: {
+      ...emptyForm.noticeFields,
+      ...event.noticeFields,
+    },
+    sevenDayCureFields: {
+      ...emptyForm.sevenDayCureFields,
+      ...event.sevenDayCureFields,
+    },
+    sevenDayTerminationFields: {
+      ...emptyForm.sevenDayTerminationFields,
+      ...event.sevenDayTerminationFields,
+    },
+    sevenDayNoticeToTerminateFields: {
+      ...emptyForm.sevenDayNoticeToTerminateFields,
+      ...event.sevenDayNoticeToTerminateFields,
+    },
+    sevenDayNoticeToWithholdRentFields: {
+      ...emptyForm.sevenDayNoticeToWithholdRentFields,
+      ...event.sevenDayNoticeToWithholdRentFields,
+    },
+    claimOnDepositFields: {
+      ...emptyForm.claimOnDepositFields,
+      ...event.claimOnDepositFields,
+    },
+    landlordNoticeOfEntryFields: {
+      ...emptyForm.landlordNoticeOfEntryFields,
+      ...event.landlordNoticeOfEntryFields,
+    },
+    evictionComplaintFields: {
+      ...emptyForm.evictionComplaintFields,
+      ...event.evictionComplaintFields,
+    },
+  };
 } 
