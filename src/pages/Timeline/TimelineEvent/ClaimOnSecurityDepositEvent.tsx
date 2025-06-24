@@ -1,5 +1,5 @@
 import { TimelineEvent, calculateObjectionDueDate, formatDateForDisplay, calculateDateDifference } from '../TimelineRepository';
-import Tooltip from '../../components/Tooltip';
+import Tooltip from '../../../components/Tooltip';
 
 interface ClaimOnSecurityDepositEventProps {
   event: TimelineEvent;

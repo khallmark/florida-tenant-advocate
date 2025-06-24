@@ -1,5 +1,5 @@
 import { TimelineEvent } from '../TimelineRepository';
-import Tooltip from '../../components/Tooltip';
+import Tooltip from '../../../components/Tooltip';
 
 interface LandlordNoticeOfEntryEventProps {
   event: TimelineEvent;

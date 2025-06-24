@@ -7,7 +7,7 @@ interface ThreeDayNoticeEventProps {
 export default function ThreeDayNoticeEvent({ event }: ThreeDayNoticeEventProps) {
   if (!event.noticeFields) return <span>—</span>;
 
-  const { requiredNoticeDate, calculatedCorrectDate, isCompliant, complianceNotes } = event.noticeFields;
+  const { requiredNoticeDate, calculatedCorrectDate } = event.noticeFields;
 
   return (
     <div className="notice-details">

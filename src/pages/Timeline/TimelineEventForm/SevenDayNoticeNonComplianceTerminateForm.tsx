@@ -1,24 +1,24 @@
-import Tooltip from '../../components/Tooltip';
+import Tooltip from '../../../components/Tooltip';
 import { FormData, calculateCureDate, formatDateForDisplay } from '../TimelineRepository';
 
-interface SevenDayNoticeCureFormProps {
+interface SevenDayNoticeNonComplianceTerminateFormProps {
   eventType: string;
   date: string;
-  noticeFields: FormData['sevenDayCureFields'];
-  onNoticeFieldsChange: (noticeFields: FormData['sevenDayCureFields']) => void;
+  noticeFields: FormData['sevenDayNoticeToTerminateFields'];
+  onNoticeFieldsChange: (noticeFields: FormData['sevenDayNoticeToTerminateFields']) => void;
   isModal: boolean;
 }
 
-export default function SevenDayNoticeCureForm({
+export default function SevenDayNoticeNonComplianceTerminateForm({
   eventType,
   date,
   noticeFields,
   onNoticeFieldsChange,
   isModal
-}: SevenDayNoticeCureFormProps) {
-  if (eventType !== '7-Day Notice to Cure (from Landlord)') return null;
+}: SevenDayNoticeNonComplianceTerminateFormProps) {
+  if (eventType !== '7-Day Notice of Noncompliance (to Terminate)') return null;
 
-  const cureByDate = date ? calculateCureDate(date) : '';
+  const landlordCureByDate = date ? calculateCureDate(date) : '';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     onNoticeFieldsChange({
@@ -29,17 +29,17 @@ export default function SevenDayNoticeCureForm({
 
   return (
     <div className="notice-fields">
-      <h3 className="notice-fields-header">7-Day Notice to Cure Details</h3>
+      <h3 className="notice-fields-header">Tenant's 7-Day Notice to Terminate Lease</h3>
       <p className="notice-help-text">
-        Based on <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(2)(b)</a>. 
-        This is for violations the landlord claims can be fixed.
+        Based on <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(1)</a>.
+        Use this when you have notified the landlord of a material failure and intend to terminate the lease if it's not fixed.
       </p>
 
       <div className="notice-form-grid">
         <div className="form-group">
           <label htmlFor={`${isModal ? 'modal-' : ''}deliveryMethod`}>
             Delivery Method
-            <Tooltip content="How was the notice delivered?">
+            <Tooltip content="How did you deliver the notice to the landlord?">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>
@@ -53,26 +53,25 @@ export default function SevenDayNoticeCureForm({
             <option value="">Select Method</option>
             <option value="Mailing">Mailing</option>
             <option value="Personal Delivery">Personal Delivery</option>
-            <option value="Left at Residence">Left at Residence</option>
           </select>
         </div>
 
         <div className="calculated-correct-date">
           <label>
-            Calculated Cure-By Date:
-            <Tooltip content="The deadline to fix the issue (7 days from delivery, excluding day of service).">
+            Landlord's Cure-By Date:
+            <Tooltip content="The deadline for the landlord to fix the issue (7 days from delivery).">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>
           <div className="calculated-date-value">
-            {cureByDate ? formatDateForDisplay(cureByDate) : 'Enter event date first'}
+            {landlordCureByDate ? formatDateForDisplay(landlordCureByDate) : 'Enter event date first'}
           </div>
         </div>
 
         <div className="form-group full-width">
           <label htmlFor={`${isModal ? 'modal-' : ''}noncomplianceDescription`}>
-            <span className="required">*</span> Description of Non-Compliance
-            <Tooltip content="What violation did the landlord cite in the notice?">
+            <span className="required">*</span> Description of Landlord's Non-Compliance
+            <Tooltip content="Describe the landlord's failure to maintain the property as required by FL Stat § 83.51(1).">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>

@@ -1,8 +1,8 @@
 import React from 'react';
 import TimelineEventFormRenderer from './TimelineEventFormRenderer';
-import Tooltip from '../components/Tooltip';
-import Button from '../components/Button';
-import Icon from '../components/Icon';
+import Tooltip from '../../components/Tooltip';
+import Button from '../../components/Button';
+import Icon from '../../components/Icon';
 import { FormData, EVENT_TYPES, getTimezoneForDate } from './TimelineRepository';
 
 interface TimelineEventFormProps {

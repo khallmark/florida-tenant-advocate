@@ -1,8 +1,7 @@
-import React from 'react';
-import { Info, AlertTriangle, CheckCircle, X } from 'lucide-react';
+import { Info, AlertTriangle, CheckCircle, X, ChevronDown, ChevronRight } from 'lucide-react';
 
 interface IconProps {
-  type: 'info' | 'warning' | 'success' | 'close';
+  type: 'info' | 'warning' | 'success' | 'close' | 'chevron-down' | 'chevron-right';
   size?: number;
   className?: string;
   'aria-label'?: string;
@@ -12,7 +11,9 @@ const iconMap = {
   info: Info,
   warning: AlertTriangle,
   success: CheckCircle,
-  close: X
+  close: X,
+  'chevron-down': ChevronDown,
+  'chevron-right': ChevronRight,
 };
 
 export default function Icon({ type, size = 16, className = '', 'aria-label': ariaLabel }: IconProps) {
@@ -29,4 +30,4 @@ export default function Icon({ type, size = 16, className = '', 'aria-label': ar
 }
 
 // Export individual icons for direct use
-export { Info, AlertTriangle, CheckCircle, X, Edit, Trash2 } from 'lucide-react'; 
+export { Info, AlertTriangle, CheckCircle, X, Edit, Trash2, ChevronDown, ChevronRight } from 'lucide-react'; 

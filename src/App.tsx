@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import './style.css';
-import Rubric from './Rubric';
-import Timeline from './Timeline';
+import Rubric from './pages/Rubric';
+import Timeline from './pages/Timeline';
+import StatutePage from './pages/StatutePage';
 
-type Page = 'rubric' | 'timeline';
+type Page = 'rubric' | 'timeline' | 'statutes';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>(() => {
     try {
       const saved = localStorage.getItem('orlando-tenant-current-page');
-      return (saved === 'rubric' || saved === 'timeline') ? saved : 'rubric';
+      return (saved === 'rubric' || saved === 'timeline' || saved === 'statutes') ? saved : 'rubric';
     } catch {
       return 'rubric';
     }
@@ -41,6 +42,12 @@ export default function App() {
             >
               Timeline Editor
             </button>
+            <button 
+              className={`nav-button ${currentPage === 'statutes' ? 'active' : ''}`}
+              onClick={() => setCurrentPage('statutes')}
+            >
+              Florida Statutes
+            </button>
           </div>
         </div>
       </nav>
@@ -48,6 +55,7 @@ export default function App() {
       <main className="main-content">
         {currentPage === 'rubric' && <Rubric />}
         {currentPage === 'timeline' && <Timeline />}
+        {currentPage === 'statutes' && <StatutePage />}
       </main>
 
       <footer>

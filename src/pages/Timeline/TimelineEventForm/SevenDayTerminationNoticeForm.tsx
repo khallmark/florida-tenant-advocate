@@ -1,24 +1,24 @@
-import Tooltip from '../../components/Tooltip';
-import { FormData, calculateCureDate, formatDateForDisplay } from '../TimelineRepository';
+import Tooltip from '../../../components/Tooltip';
+import { FormData, calculateVacateDate, formatDateForDisplay } from '../TimelineRepository';
 
-interface SevenDayNoticeNonComplianceWithholdRentFormProps {
+interface SevenDayTerminationNoticeFormProps {
   eventType: string;
   date: string;
-  noticeFields: FormData['sevenDayNoticeToWithholdRentFields'];
-  onNoticeFieldsChange: (noticeFields: FormData['sevenDayNoticeToWithholdRentFields']) => void;
+  noticeFields: FormData['sevenDayTerminationFields'];
+  onNoticeFieldsChange: (noticeFields: FormData['sevenDayTerminationFields']) => void;
   isModal: boolean;
 }
 
-export default function SevenDayNoticeNonComplianceWithholdRentForm({
+export default function SevenDayTerminationNoticeForm({
   eventType,
   date,
   noticeFields,
   onNoticeFieldsChange,
   isModal
-}: SevenDayNoticeNonComplianceWithholdRentFormProps) {
-  if (eventType !== '7-Day Notice of Noncompliance (to Withhold Rent)') return null;
-
-  const landlordCureByDate = date ? calculateCureDate(date) : '';
+}: SevenDayTerminationNoticeFormProps) {
+  if (eventType !== '7-Day Termination Notice (Non-Curable)') return null;
+  
+  const vacateByDate = date ? calculateVacateDate(date) : '';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     onNoticeFieldsChange({
@@ -29,17 +29,17 @@ export default function SevenDayNoticeNonComplianceWithholdRentForm({
 
   return (
     <div className="notice-fields">
-      <h3 className="notice-fields-header">Tenant's 7-Day Notice to Withhold Rent</h3>
+      <h3 className="notice-fields-header">7-Day Termination Notice Details</h3>
       <p className="notice-help-text">
-        Based on <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.60" target="_blank" rel="noopener noreferrer">FL Stat § 83.60(1)(b)</a>.
-        Use this to notify the landlord of a material failure and your intent to withhold rent if it's not fixed. This is a required step to raise this defense in court.
+        Based on <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(2)(a)</a>. 
+        This is for serious violations where the landlord terminates the lease without a chance to cure.
       </p>
 
       <div className="notice-form-grid">
         <div className="form-group">
           <label htmlFor={`${isModal ? 'modal-' : ''}deliveryMethod`}>
             Delivery Method
-            <Tooltip content="How did you deliver the notice? It can be given to the landlord, manager, or rent collector.">
+            <Tooltip content="How was the notice delivered?">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>
@@ -53,25 +53,26 @@ export default function SevenDayNoticeNonComplianceWithholdRentForm({
             <option value="">Select Method</option>
             <option value="Mailing">Mailing</option>
             <option value="Personal Delivery">Personal Delivery</option>
+            <option value="Left at Residence">Left at Residence</option>
           </select>
         </div>
 
         <div className="calculated-correct-date">
           <label>
-            Landlord's Cure-By Date:
-            <Tooltip content="The deadline for the landlord to make repairs (7 days).">
+            Calculated Vacate-By Date:
+            <Tooltip content="The date you must leave the premises (7 days from delivery).">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>
           <div className="calculated-date-value">
-            {landlordCureByDate ? formatDateForDisplay(landlordCureByDate) : 'Enter event date first'}
+            {vacateByDate ? formatDateForDisplay(vacateByDate) : 'Enter event date first'}
           </div>
         </div>
 
         <div className="form-group full-width">
           <label htmlFor={`${isModal ? 'modal-' : ''}noncomplianceDescription`}>
-            <span className="required">*</span> Description of Landlord's Material Non-Compliance
-            <Tooltip content="Describe the landlord's failure to maintain the property that justifies withholding rent.">
+            <span className="required">*</span> Description of Non-Compliance
+            <Tooltip content="What serious violation did the landlord cite in the notice? (e.g., destruction of property)">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>

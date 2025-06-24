@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Icon from '../components/Icon';
 
 interface CollapsibleSectionProps {
   title: string;
@@ -15,15 +16,24 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
 
   return (
     <div className="section">
-      <h2 
+      <button 
         className="section-header" 
         onClick={() => setIsOpen(!isOpen)}
-        style={{ cursor: 'pointer' }}
+        aria-expanded={isOpen}
+        aria-controls={`section-${title.replace(/\s+/g, '-').toLowerCase()}`}
       >
-        <span>{isOpen ? '−' : '+'}</span> {title}
-      </h2>
+        <span className="section-icon">
+          {isOpen ? <Icon type="chevron-down" size={20} /> : <Icon type="chevron-right" size={20} />}
+        </span>
+        <span className="section-title">{title}</span>
+      </button>
       {isOpen && (
-        <div className="section-content">
+        <div 
+          className="section-content"
+          id={`section-${title.replace(/\s+/g, '-').toLowerCase()}`}
+          role="region"
+          aria-labelledby={`section-${title.replace(/\s+/g, '-').toLowerCase()}`}
+        >
           {children}
         </div>
       )}
@@ -48,14 +58,27 @@ const CollapsibleSubsection: React.FC<CollapsibleSubsectionProps> = ({
 
   return (
     <div className={className}>
-      <h3 
+      <button 
+        className="subsection-header"
         onClick={() => setIsOpen(!isOpen)}
-        style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+        aria-expanded={isOpen}
+        aria-controls={`subsection-${title.replace(/\s+/g, '-').toLowerCase()}`}
       >
-        <span style={{ fontSize: '1rem', fontWeight: 'normal' }}>{isOpen ? '−' : '+'}</span>
-        {title}
-      </h3>
-      {isOpen && children}
+        <span className="subsection-icon">
+          {isOpen ? <Icon type="chevron-down" size={16} /> : <Icon type="chevron-right" size={16} />}
+        </span>
+        <span className="subsection-title">{title}</span>
+      </button>
+      {isOpen && (
+        <div 
+          className="subsection-content"
+          id={`subsection-${title.replace(/\s+/g, '-').toLowerCase()}`}
+          role="region"
+          aria-labelledby={`subsection-${title.replace(/\s+/g, '-').toLowerCase()}`}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 };
@@ -152,7 +175,7 @@ const Rubric: React.FC = () => {
 
       <CollapsibleSection title="3. I've Been Sued - What Now? (URGENT)">
         <div className="urgent-actions">
-          <CollapsibleSubsection title="⚠️ TIME-CRITICAL ACTIONS (You have 5 business days to respond)" className="time-critical" defaultOpen={true}>
+          <CollapsibleSubsection title="TIME-CRITICAL ACTIONS (You have 5 business days to respond)" className="time-critical" defaultOpen={true}>
             <ol>
               <li><strong>File an Answer:</strong> Respond to the complaint in writing</li>
               <li><strong>Raise All Defenses:</strong> List every defense you have</li>
@@ -267,6 +290,31 @@ const Rubric: React.FC = () => {
               <li><strong>Emergency Rental Assistance:</strong> Check current programs</li>
             </ul>
           </CollapsibleSubsection>
+        </div>
+      </CollapsibleSection>
+
+      <CollapsibleSection title="6. Using the Timeline Tool">
+        <div className="feature-explanation">
+          <p>
+            The <strong>Timeline Tool</strong> is designed to help you create a detailed, chronological record of all events related to your tenancy and eviction case. Proper documentation is critical for defending your rights.
+          </p>
+          <h4>Key Features:</h4>
+          <ul>
+            <li><strong>Event Tracking:</strong> Log every interaction, notice, payment, and communication. The tool automatically calculates critical deadlines based on the dates you provide.</li>
+            <li><strong>Notice Analysis:</strong> When you enter a notice from your landlord (like a 3-Day Notice for rent), the tool analyzes it for compliance with Florida law, such as checking if the deadline is calculated correctly.</li>
+            <li><strong>Data Management:</strong> Your timeline is saved securely in your browser's local storage. You can also export it to a JSON file for your records or to share with an attorney, and import it on another device.</li>
+          </ul>
+          <h4>How to Use the Timeline:</h4>
+          <ol>
+            <li>Navigate to the "Timeline" page.</li>
+            <li>Click "Add New Event" to open the form.</li>
+            <li>Select the `Event Type` that best matches your situation. Different forms will appear for specific legal notices.</li>
+            <li>Fill in all required fields. The more detail you provide, the stronger your record will be.</li>
+            <li>The tool will display analysis and calculated dates (e.g., "Objection Due Date") directly on the timeline event.</li>
+          </ol>
+          <p>
+            Use this tool to build a comprehensive history. If you end up in court, this timeline will be an invaluable resource for you and your legal representative.
+          </p>
         </div>
       </CollapsibleSection>
 

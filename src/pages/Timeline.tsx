@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import TimelineEventForm from './Timeline/TimelineEventForm';
 
-import Tooltip from './components/Tooltip';
-import Button from './components/Button';
-import Modal from './components/Modal';
-import Icon from './components/Icon';
+import Tooltip from '../components/Tooltip';
+import Button from '../components/Button';
+import Modal from '../components/Modal';
+import Icon from '../components/Icon';
 import { Edit, Trash2 } from 'lucide-react';
 import { 
   TimelineEvent, 

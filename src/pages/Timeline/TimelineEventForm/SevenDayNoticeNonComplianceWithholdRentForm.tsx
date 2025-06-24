@@ -1,22 +1,22 @@
-import Tooltip from '../../components/Tooltip';
+import Tooltip from '../../../components/Tooltip';
 import { FormData, calculateCureDate, formatDateForDisplay } from '../TimelineRepository';
 
-interface SevenDayNoticeNonComplianceTerminateFormProps {
+interface SevenDayNoticeNonComplianceWithholdRentFormProps {
   eventType: string;
   date: string;
-  noticeFields: FormData['sevenDayNoticeToTerminateFields'];
-  onNoticeFieldsChange: (noticeFields: FormData['sevenDayNoticeToTerminateFields']) => void;
+  noticeFields: FormData['sevenDayNoticeToWithholdRentFields'];
+  onNoticeFieldsChange: (noticeFields: FormData['sevenDayNoticeToWithholdRentFields']) => void;
   isModal: boolean;
 }
 
-export default function SevenDayNoticeNonComplianceTerminateForm({
+export default function SevenDayNoticeNonComplianceWithholdRentForm({
   eventType,
   date,
   noticeFields,
   onNoticeFieldsChange,
   isModal
-}: SevenDayNoticeNonComplianceTerminateFormProps) {
-  if (eventType !== '7-Day Notice of Noncompliance (to Terminate)') return null;
+}: SevenDayNoticeNonComplianceWithholdRentFormProps) {
+  if (eventType !== '7-Day Notice of Noncompliance (to Withhold Rent)') return null;
 
   const landlordCureByDate = date ? calculateCureDate(date) : '';
 
@@ -29,17 +29,17 @@ export default function SevenDayNoticeNonComplianceTerminateForm({
 
   return (
     <div className="notice-fields">
-      <h3 className="notice-fields-header">Tenant's 7-Day Notice to Terminate Lease</h3>
+      <h3 className="notice-fields-header">Tenant's 7-Day Notice to Withhold Rent</h3>
       <p className="notice-help-text">
-        Based on <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.56" target="_blank" rel="noopener noreferrer">FL Stat § 83.56(1)</a>.
-        Use this when you have notified the landlord of a material failure and intend to terminate the lease if it's not fixed.
+        Based on <a href="https://www.flsenate.gov/Laws/Statutes/2023/83.60" target="_blank" rel="noopener noreferrer">FL Stat § 83.60(1)(b)</a>.
+        Use this to notify the landlord of a material failure and your intent to withhold rent if it's not fixed. This is a required step to raise this defense in court.
       </p>
 
       <div className="notice-form-grid">
         <div className="form-group">
           <label htmlFor={`${isModal ? 'modal-' : ''}deliveryMethod`}>
             Delivery Method
-            <Tooltip content="How did you deliver the notice to the landlord?">
+            <Tooltip content="How did you deliver the notice? It can be given to the landlord, manager, or rent collector.">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>
@@ -59,7 +59,7 @@ export default function SevenDayNoticeNonComplianceTerminateForm({
         <div className="calculated-correct-date">
           <label>
             Landlord's Cure-By Date:
-            <Tooltip content="The deadline for the landlord to fix the issue (7 days from delivery).">
+            <Tooltip content="The deadline for the landlord to make repairs (7 days).">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>
@@ -70,8 +70,8 @@ export default function SevenDayNoticeNonComplianceTerminateForm({
 
         <div className="form-group full-width">
           <label htmlFor={`${isModal ? 'modal-' : ''}noncomplianceDescription`}>
-            <span className="required">*</span> Description of Landlord's Non-Compliance
-            <Tooltip content="Describe the landlord's failure to maintain the property as required by FL Stat § 83.51(1).">
+            <span className="required">*</span> Description of Landlord's Material Non-Compliance
+            <Tooltip content="Describe the landlord's failure to maintain the property that justifies withholding rent.">
               <span className="help-icon">ⓘ</span>
             </Tooltip>
           </label>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Tooltip from '../../components/Tooltip';
+import Tooltip from '../../../components/Tooltip';
 import { FormData, formatDateForDisplay, calculateDateDifference, calculateObjectionDueDate } from '../TimelineRepository';
 
 interface ClaimOnSecurityDepositFormProps {

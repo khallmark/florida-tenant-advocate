@@ -41,6 +41,6 @@ export default function TimelineEventRenderer({ event }: TimelineEventRendererPr
     
     // Generic events (Rent Payment, Communication with Landlord, Maintenance Request, Other)
     default:
-      return <GenericEvent event={event} />;
+      return <GenericEvent />;
   }
 } 

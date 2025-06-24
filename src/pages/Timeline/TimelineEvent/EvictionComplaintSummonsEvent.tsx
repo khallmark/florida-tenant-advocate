@@ -1,5 +1,5 @@
 import { TimelineEvent, calculateCourtRegistryDueDate, formatDateForDisplay } from '../TimelineRepository';
-import Tooltip from '../../components/Tooltip';
+import Tooltip from '../../../components/Tooltip';
 
 interface EvictionComplaintSummonsEventProps {
   event: TimelineEvent;
