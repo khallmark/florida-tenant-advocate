@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import TimelineEventForm from './Timeline/TimelineEventForm';
+
 import Tooltip from './components/Tooltip';
 import Button from './components/Button';
 import Modal from './components/Modal';
+import Icon from './components/Icon';
+import { Edit, Trash2 } from 'lucide-react';
 import { 
   TimelineEvent, 
   FormData, 
@@ -19,6 +22,7 @@ import {
   createEvent,
   updateEvent
 } from './Timeline/TimelineRepository';
+import TimelineEventRenderer from './Timeline/TimelineEvent/TimelineEventRenderer';
 
 export default function Timeline() {
   const [events, setEvents] = useState<TimelineEvent[]>([]);
@@ -121,7 +125,7 @@ export default function Timeline() {
     <div className="timeline">
       <h1>Case Timeline Editor</h1>
       <p>
-        Track important events in your case. Hover over the ⓘ info icon next to each field 
+        Track important events in your case. Hover over the info icon next to each field 
         for specific guidance. Use {isMac ? 'Cmd+Enter' : 'Ctrl+Enter'} to quickly submit forms.
       </p>
 
@@ -190,7 +194,11 @@ export default function Timeline() {
                       {event.noticeFields?.complianceNotes ? (
                         <Tooltip content={event.noticeFields.complianceNotes}>
                           <div className={`compliance-status ${event.noticeFields.isCompliant ? 'compliant' : 'non-compliant'}`}>
-                            {event.noticeFields.isCompliant ? '✅' : '⚠️'}
+                            {event.noticeFields.isCompliant ? (
+                              <Icon type="success" size={16} />
+                            ) : (
+                              <Icon type="warning" size={16} />
+                            )}
                           </div>
                         </Tooltip>
                       ) : (
@@ -211,23 +219,14 @@ export default function Timeline() {
                     <td>{event.label}</td>
                     <td>{event.description}</td>
                     <td>
-                      {event.noticeFields?.requiredNoticeDate ? (
-                        <div className="notice-details">
-                          <div><strong>Notice Says Due:</strong> {new Date(event.noticeFields.requiredNoticeDate + 'T12:00:00').toDateString()}</div>
-                          {event.noticeFields.calculatedCorrectDate && (
-                            <div><strong>Should Have Said:</strong> {new Date(event.noticeFields.calculatedCorrectDate + 'T12:00:00').toDateString()}</div>
-                          )}
-                        </div>
-                      ) : (
-                        '—'
-                      )}
+                      <TimelineEventRenderer event={event} />
                     </td>
                     <td className="actions-cell">
                       <Button 
                         onClick={() => handleEdit(event)}
                         variant="ghost"
                         size="small"
-                        icon="✏️"
+                        icon={<Edit size={14} />}
                       >
                         Edit
                       </Button>
@@ -235,7 +234,7 @@ export default function Timeline() {
                         onClick={() => handleDelete(event.id)}
                         variant="danger"
                         size="small"
-                        icon="🗑️"
+                        icon={<Trash2 size={14} />}
                       >
                         Delete
                       </Button>

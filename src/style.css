@@ -624,11 +624,16 @@ footer a {
 }
 
 .compliance-status {
-    padding: 0.5rem 0.5rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 6px;
     font-weight: 500;
     margin: 0;
     border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .compliance-status.compliant {
@@ -657,7 +662,16 @@ footer a {
 /* Updated compliance styles for table */
 .compliance-cell {
     text-align: center;
-    width: 80px;
+    width: 60px;
+    padding: 0.5rem;
+}
+
+/* Ensure the first column (compliance column) is properly sized */
+.events-table th:first-child,
+.events-table td:first-child {
+    width: 60px;
+    text-align: center;
+    padding: 0.5rem;
 }
 
 .compliance-indicator {
@@ -847,9 +861,38 @@ footer a {
 }
 
 .help-icon {
-    color: #718096;
-    font-weight: bold;
+    color: #4a5568;
     cursor: help;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+    transition: color 0.2s ease;
+}
+
+.help-icon:hover {
+    color: #2d3748;
+}
+
+/* Icon Component Base Styles */
+.icon {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.icon-info {
+    color: #4a5568;
+}
+
+.icon-warning {
+    color: #ed8936;
+}
+
+.icon-success {
+    color: #38a169;
+}
+
+.icon-close {
+    color: #e53e3e;
 }
 
 .time-input-group {

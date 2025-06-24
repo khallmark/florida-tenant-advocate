@@ -1,14 +1,8 @@
 import React from 'react';
-import ThreeDayNoticeForm from './TimelineEventForm/ThreeDayNoticeForm';
-import SevenDayNoticeCureForm from './TimelineEventForm/SevenDayNoticeCureForm';
-import SevenDayTerminationNoticeForm from './TimelineEventForm/SevenDayTerminationNoticeForm';
-import SevenDayNoticeNonComplianceTerminateForm from './TimelineEventForm/SevenDayNoticeNonComplianceTerminateForm';
-import SevenDayNoticeNonComplianceWithholdRentForm from './TimelineEventForm/SevenDayNoticeNonComplianceWithholdRentForm';
-import ClaimOnSecurityDepositForm from './TimelineEventForm/ClaimOnSecurityDepositForm';
-import LandlordNoticeOfEntryForm from './TimelineEventForm/LandlordNoticeOfEntryForm';
-import EvictionComplaintSummonsForm from './TimelineEventForm/EvictionComplaintSummonsForm';
+import TimelineEventFormRenderer from './TimelineEventFormRenderer';
 import Tooltip from '../components/Tooltip';
 import Button from '../components/Button';
+import Icon from '../components/Icon';
 import { FormData, EVENT_TYPES, getTimezoneForDate } from './TimelineRepository';
 
 interface TimelineEventFormProps {
@@ -37,41 +31,6 @@ export default function TimelineEventForm({
 
   const timezone = formData.date ? getTimezoneForDate(formData.date) : 'EST';
 
-  const handleNoticeFieldsChange = (noticeFields: FormData['noticeFields']) => {
-    setFormData({
-      ...formData,
-      noticeFields
-    });
-  };
-
-  const handleSevenDayCureChange = (sevenDayCureFields: FormData['sevenDayCureFields']) => {
-    setFormData({ ...formData, sevenDayCureFields });
-  };
-  
-  const handleSevenDayTerminationChange = (sevenDayTerminationFields: FormData['sevenDayTerminationFields']) => {
-    setFormData({ ...formData, sevenDayTerminationFields });
-  };
-  
-  const handleSevenDayNoticeToTerminateChange = (sevenDayNoticeToTerminateFields: FormData['sevenDayNoticeToTerminateFields']) => {
-    setFormData({ ...formData, sevenDayNoticeToTerminateFields });
-  };
-  
-  const handleSevenDayNoticeToWithholdRentChange = (sevenDayNoticeToWithholdRentFields: FormData['sevenDayNoticeToWithholdRentFields']) => {
-    setFormData({ ...formData, sevenDayNoticeToWithholdRentFields });
-  };
-  
-  const handleClaimOnDepositChange = (claimOnDepositFields: FormData['claimOnDepositFields']) => {
-    setFormData({ ...formData, claimOnDepositFields });
-  };
-  
-  const handleLandlordNoticeOfEntryChange = (landlordNoticeOfEntryFields: FormData['landlordNoticeOfEntryFields']) => {
-    setFormData({ ...formData, landlordNoticeOfEntryFields });
-  };
-  
-  const handleEvictionComplaintChange = (evictionComplaintFields: FormData['evictionComplaintFields']) => {
-    setFormData({ ...formData, evictionComplaintFields });
-  };
-
   return (
     <form 
       onSubmit={onSubmit} 
@@ -84,7 +43,7 @@ export default function TimelineEventForm({
             <span className="required">*</span>{' '}
             Date{' '}
             <Tooltip content="Enter the date when this event occurred">
-              <span className="help-icon">ⓘ</span>
+              <Icon type="info" className="help-icon" />
             </Tooltip>
           </label>
           <input
@@ -100,7 +59,7 @@ export default function TimelineEventForm({
           <label htmlFor={`${isModal ? 'modal-' : ''}time`}>
             Time{' '}
             <Tooltip content={`Time when this event occurred (automatically set to ${timezone})`}>
-              <span className="help-icon">ⓘ</span>
+              <Icon type="info" className="help-icon" />
             </Tooltip>
           </label>
           <div className="time-input-group">
@@ -119,7 +78,7 @@ export default function TimelineEventForm({
             <span className="required">*</span>{' '}
             Event Type{' '}
             <Tooltip content="Select the type of event from the dropdown">
-              <span className="help-icon">ⓘ</span>
+              <Icon type="info" className="help-icon" />
             </Tooltip>
           </label>
           <select
@@ -137,59 +96,12 @@ export default function TimelineEventForm({
         </div>
       </div>
 
-            {/* Conditional 3-Day Notice Fields */}
-     <ThreeDayNoticeForm
+      {/* Event-specific forms */}
+      <TimelineEventFormRenderer
         eventType={formData.eventType}
         date={formData.date}
-        noticeFields={formData.noticeFields}
-        onNoticeFieldsChange={handleNoticeFieldsChange}
-        isModal={isModal}
-      />
-      <SevenDayNoticeCureForm
-        eventType={formData.eventType}
-        date={formData.date}
-        noticeFields={formData.sevenDayCureFields}
-        onNoticeFieldsChange={handleSevenDayCureChange}
-        isModal={isModal}
-      />
-      <SevenDayTerminationNoticeForm
-        eventType={formData.eventType}
-        date={formData.date}
-        noticeFields={formData.sevenDayTerminationFields}
-        onNoticeFieldsChange={handleSevenDayTerminationChange}
-        isModal={isModal}
-      />
-      <SevenDayNoticeNonComplianceTerminateForm
-        eventType={formData.eventType}
-        date={formData.date}
-        noticeFields={formData.sevenDayNoticeToTerminateFields}
-        onNoticeFieldsChange={handleSevenDayNoticeToTerminateChange}
-        isModal={isModal}
-      />
-      <SevenDayNoticeNonComplianceWithholdRentForm
-        eventType={formData.eventType}
-        date={formData.date}
-        noticeFields={formData.sevenDayNoticeToWithholdRentFields}
-        onNoticeFieldsChange={handleSevenDayNoticeToWithholdRentChange}
-        isModal={isModal}
-      />
-      <ClaimOnSecurityDepositForm
-        eventType={formData.eventType}
-        noticeFields={formData.claimOnDepositFields}
-        onNoticeFieldsChange={handleClaimOnDepositChange}
-        isModal={isModal}
-      />
-      <LandlordNoticeOfEntryForm
-        eventType={formData.eventType}
-        noticeFields={formData.landlordNoticeOfEntryFields}
-        onNoticeFieldsChange={handleLandlordNoticeOfEntryChange}
-        isModal={isModal}
-      />
-      <EvictionComplaintSummonsForm
-        eventType={formData.eventType}
-        date={formData.date}
-        noticeFields={formData.evictionComplaintFields}
-        onNoticeFieldsChange={handleEvictionComplaintChange}
+        formData={formData}
+        setFormData={setFormData}
         isModal={isModal}
       />
 
@@ -198,7 +110,7 @@ export default function TimelineEventForm({
           <span className="required">*</span>{' '}
           Label{' '}
           <Tooltip content="Brief title for this event (e.g., 'First 3-day notice', 'Rent payment', 'Court filing')">
-            <span className="help-icon">ⓘ</span>
+            <Icon type="info" className="help-icon" />
           </Tooltip>
         </label>
         <input
@@ -215,7 +127,7 @@ export default function TimelineEventForm({
         <label htmlFor={`${isModal ? 'modal-' : ''}description`}>
           Description{' '}
           <Tooltip content="Additional details about this event (optional)">
-            <span className="help-icon">ⓘ</span>
+            <Icon type="info" className="help-icon" />
           </Tooltip>
         </label>
         <textarea
