@@ -52,6 +52,19 @@ export default function App() {
         </div>
       </nav>
 
+      <div className="beta-banner">
+        <div className="beta-banner-content">
+          <div className="beta-badge">
+            ⚠️ BETA VERSION
+          </div>
+          <div className="beta-disclaimer">
+            <strong>THIS IS NOT LEGAL ADVICE</strong> - This tool is in beta testing and provides general information only. 
+            Laws change frequently and this information may be outdated or incorrect. 
+            <strong>ALWAYS CONSULT A LICENSED ATTORNEY</strong> for legal advice specific to your situation.
+          </div>
+        </div>
+      </div>
+
       <main className="main-content">
         {currentPage === 'rubric' && <Rubric />}
         {currentPage === 'timeline' && <Timeline />}

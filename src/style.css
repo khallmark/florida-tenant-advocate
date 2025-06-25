@@ -464,8 +464,8 @@ a:hover {
 }
 
 .nav-button.active {
-    background: #3498db;
-    border-color: #3498db;
+    background-color: #3182ce;
+    color: #ffffff;
 }
 
 .main-content {
@@ -1386,4 +1386,85 @@ a:hover {
     padding: 1rem;
     border-radius: 6px;
     border: 1px solid #e2e8f0;
+}
+
+/* Beta Banner - Big Ass Warning */
+.beta-banner {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    border-bottom: 4px solid #991b1b;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: pulse-warning 3s ease-in-out infinite;
+}
+
+.beta-banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.beta-badge {
+    background: #ffffff;
+    color: #dc2626;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.beta-disclaimer {
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    min-width: 300px;
+}
+
+.beta-disclaimer strong {
+    font-weight: 900;
+    color: #fef2f2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse-warning {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 20px rgba(220, 38, 38, 0.5);
+    }
+}
+
+@media (max-width: 768px) {
+    .beta-banner-content {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .beta-badge {
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .beta-disclaimer {
+        font-size: 0.9rem;
+        min-width: auto;
+    }
 }
