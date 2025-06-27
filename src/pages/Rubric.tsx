@@ -11,48 +11,258 @@ const Rubric: React.FC = () => {
 
       <CollapsibleSection title="🚨 Orlando & Orange County Resources (Get Help Here)" defaultOpen={true}>
         <div className="resources">
-          <CollapsibleSubsection title="Legal Aid & Free Legal Help" className="resource-category" defaultOpen={true}>
+          <CollapsibleSubsection title="⚖️ Legal Aid & Free Legal Services" className="resource-category" defaultOpen={true}>
+            <p><strong>What these organizations provide:</strong> Free or low-cost legal representation, advice, and assistance for qualifying low-income residents in housing, family law, consumer protection, and civil rights matters.</p>
+            
+            <CollapsibleSubsection title="Legal Aid Society of Orange County Bar Association" className="legal-org">
+              <p><strong>Primary Contact:</strong> (407) 841-8310</p>
+              <p><strong>Address:</strong> 100 E. Robinson St, Orlando, FL 32801</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Housing Law:</strong> Private tenant problems, foreclosure defense, eviction defense</li>
+                <li><strong>Family Law:</strong> Divorce, custody, guardianships</li>
+                <li><strong>Consumer Law:</strong> Bankruptcies, debt collection, wage garnishment defense</li>
+                <li><strong>Immigration:</strong> Adjustment of status, citizenship, VAWA applications</li>
+                <li><strong>Homeless Clinic:</strong> Walk-in clinic Mondays 1:30PM-3:00PM</li>
+              </ul>
+              <p><strong>Hours:</strong> Monday-Friday 8:30AM-5:00PM | Appointment calls: Mon-Thu 9:00AM-Noon & 1:30PM-3:00PM, Most Saturdays 9:00AM-Noon</p>
+              <p><strong>Website:</strong> legalaidocba.org</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Community Legal Services of Mid-Florida" className="legal-org">
+              <p><strong>Contact:</strong> Call their intake line for assistance</p>
+              <p><strong>Service Area:</strong> Orange, Osceola, Seminole, Volusia, Lake, Marion, Sumter, Citrus, Hernando, and Putnam counties</p>
+              <p><strong>Services:</strong> Housing law, family law, consumer protection, fair housing, disaster relief</p>
+              <p><strong>Website:</strong> legalaccessforall.org</p>
+              <p><strong>Special Programs:</strong> Online legal clinics, fair housing advocacy, small business assistance</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Florida Legal Services" className="legal-org">
+              <p><strong>Eviction Prevention Helpline:</strong> 1-888-780-0443</p>
+              <p><strong>Fair Housing Hotline:</strong> (407) 801-4224 (English) | (850) 680-1729 (Spanish)</p>
+              <p><strong>Email:</strong> fairhousing@floridalegal.org</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Eviction Prevention:</strong> Legal representation, negotiation, court filings, tenant education</li>
+                <li><strong>Fair Housing:</strong> Discrimination complaints, reasonable accommodations</li>
+                <li><strong>Emergency Rental Assistance:</strong> Referrals to local programs</li>
+                <li><strong>Free Answer Form Builder:</strong> Online tool to respond to eviction complaints</li>
+              </ul>
+              <p><strong>Website:</strong> floridalegal.org</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Florida Rural Legal Services" className="legal-org">
+              <p><strong>Contact:</strong> (863) 688-7376</p>
+              <p><strong>Service Focus:</strong> Migrant and seasonal farmworkers, rural communities</p>
+              <p><strong>Services:</strong> Housing rights, labor law, civil rights, family law</p>
+            </CollapsibleSubsection>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="🏛️ Court Information & Self-Help" className="resource-category">
+            <p><strong>What these services provide:</strong> Court forms, procedural guidance, self-help resources, and assistance with filing legal documents.</p>
+            
+            <CollapsibleSubsection title="Orange County Clerk of Court" className="court-service">
+              <p><strong>Main Office:</strong> 425 N Orange Ave, Orlando, FL 32801</p>
+              <p><strong>Phone:</strong> (407) 836-2000</p>
+              <p><strong>Website:</strong> myorangeclerk.com</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Self-Help Center:</strong> Room 340, open 7:30AM-4:00PM</li>
+                <li><strong>Forms and guidance:</strong> Eviction response forms, small claims assistance</li>
+                <li><strong>Case lookup:</strong> Online access to court records</li>
+                <li><strong>Filing assistance:</strong> Help with court document preparation</li>
+              </ul>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Ninth Judicial Circuit Self-Help" className="court-service">
+              <p><strong>Orange County Family Court Services:</strong> (407) 836-6054</p>
+              <p><strong>Location:</strong> Orange County Courthouse, Suite 330</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Family law forms:</strong> Divorce, custody, domestic violence</li>
+                <li><strong>Pro se assistance:</strong> Guidance for self-represented litigants</li>
+                <li><strong>Eviction forms:</strong> Answer forms for residential eviction cases</li>
+                <li><strong>Court procedure guidance:</strong> How to file, serve papers, appear in court</li>
+              </ul>
+              <p><strong>Website:</strong> ninthcircuit.org</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Orange County Bar Association Lawyer Referral" className="court-service">
+              <p><strong>Phone:</strong> (407) 422-4537</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Free 30-minute consultations:</strong> With qualified attorneys</li>
+                <li><strong>Lawyer matching:</strong> Based on your legal issue</li>
+                <li><strong>Free mediation:</strong> For qualifying disputes</li>
+                <li><strong>Hours:</strong> Monday-Friday 9:00AM-4:30PM</li>
+              </ul>
+              <p><strong>Website:</strong> orangecountybar.community.lawyer</p>
+            </CollapsibleSubsection>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="🏠 Housing Resources & Rental Assistance" className="resource-category">
+            <p><strong>What these programs provide:</strong> Emergency rental assistance, housing vouchers, eviction prevention, housing counseling, and affordable housing options.</p>
+            
+            <CollapsibleSubsection title="Orange County Housing & Community Development" className="housing-org">
+              <p><strong>Phone:</strong> (407) 836-5150</p>
+              <p><strong>Address:</strong> 525 East South Street, Orlando, FL 32801</p>
+              <p><strong>Email:</strong> housing@ocfl.net</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Section 8 Housing Choice Vouchers:</strong> Rental assistance for very low-income families</li>
+                <li><strong>Tenant Based Rental Assistance (TBRA):</strong> Federal rental subsidies</li>
+                <li><strong>Housing counseling:</strong> Budgeting, tenant rights education</li>
+                <li><strong>Landlord relations:</strong> Property owner recruitment and support</li>
+              </ul>
+              <p><strong>Note:</strong> Housing Choice Voucher waiting list is currently closed</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Orlando Housing Authority" className="housing-org">
+              <p><strong>Phone:</strong> (407) 895-3300</p>
+              <p><strong>Address:</strong> 390 North Bumby Ave, Orlando, FL 32803</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Public Housing:</strong> Affordable rental units</li>
+                <li><strong>Section 8 Vouchers:</strong> Approximately 4,600 vouchers administered</li>
+                <li><strong>HUD-VASH Program:</strong> Housing assistance for veterans</li>
+                <li><strong>Moving to Work (MTW):</strong> Flexible housing assistance programs</li>
+              </ul>
+              <p><strong>Website:</strong> orlandohousing.org</p>
+              <p><strong>Hours:</strong> Monday-Friday 8:00AM-5:00PM</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Orange County Office of Tenant Services" className="housing-org">
+              <p><strong>Phone:</strong> (407) 836-RENT or (407) 836-7368</p>
+              <p><strong>Email:</strong> TenantServices@ocfl.net</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Tenant rights education:</strong> Information on Florida landlord-tenant law</li>
+                <li><strong>Referrals:</strong> To legal aid, code enforcement, nonprofits</li>
+                <li><strong>Mediation assistance:</strong> Help resolving landlord-tenant disputes</li>
+                <li><strong>Resource clearinghouse:</strong> One-stop information center</li>
+              </ul>
+              <p><strong>Coverage Area:</strong> Unincorporated Orange County only</p>
+              <p><strong>Hours:</strong> Monday-Friday 8:30AM-12:00PM, 1:00PM-4:30PM</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Eviction Prevention in the Community (EPIC)" className="housing-org">
+              <p><strong>Phone:</strong> (407) 836-6514</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Emergency financial assistance:</strong> To stop eviction process</li>
+                <li><strong>Case management:</strong> Budget counseling, resource referrals</li>
+                <li><strong>Eligibility requirements:</strong> Families with minor children, court-filed eviction, Orange County residents</li>
+                <li><strong>Once-in-a-lifetime assistance:</strong> One-time program participation per family</li>
+              </ul>
+              <p><strong>How to apply:</strong> Leave message with full name, phone, court case number</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Heart of Florida United Way (2-1-1)" className="housing-org">
+              <p><strong>Phone:</strong> 2-1-1 (dial 211)</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Emergency assistance referrals:</strong> Rent, utilities, food</li>
+                <li><strong>Social services navigation:</strong> Comprehensive resource database</li>
+                <li><strong>Crisis support:</strong> 24/7 helpline</li>
+                <li><strong>Multilingual assistance:</strong> Available in multiple languages</li>
+              </ul>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Additional Housing Assistance Organizations" className="housing-org">
+              <ul>
+                <li><strong>Salvation Army Central Florida:</strong> Emergency rental assistance, case management</li>
+                <li><strong>Catholic Charities of Central Florida:</strong> Rental assistance programs, housing counseling</li>
+                <li><strong>Homeless Services Network:</strong> (407) 893-0133 - Emergency housing, homeless prevention</li>
+                <li><strong>Coalition for the Homeless of Central Florida:</strong> Emergency shelter, transitional housing</li>
+                <li><strong>Orange County Social Services:</strong> (407) 836-7200 - Emergency assistance programs</li>
+              </ul>
+            </CollapsibleSubsection>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="🔧 Code Enforcement & Housing Standards" className="resource-category">
+            <p><strong>What code enforcement does:</strong> Investigate habitability complaints, issue citations for violations, require landlords to make repairs, and document unsafe living conditions.</p>
+            
+            <CollapsibleSubsection title="City of Orlando Code Enforcement" className="code-service">
+              <p><strong>Phone:</strong> (407) 246-2280</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Habitability complaints:</strong> Plumbing, electrical, structural issues</li>
+                <li><strong>Property inspections:</strong> Document poor living conditions</li>
+                <li><strong>Violation enforcement:</strong> Citations and fines for non-compliance</li>
+                <li><strong>Tenant support:</strong> Evidence gathering for court cases</li>
+              </ul>
+              <p><strong>Coverage:</strong> City of Orlando limits only</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Orange County Code Enforcement" className="code-service">
+              <p><strong>Phone:</strong> (407) 836-6200</p>
+              <p><strong>Services:</strong></p>
+              <ul>
+                <li><strong>Housing code violations:</strong> Health and safety standards enforcement</li>
+                <li><strong>Complaint investigations:</strong> Anonymous reporting available</li>
+                <li><strong>Repair orders:</strong> Legal requirements for landlord compliance</li>
+                <li><strong>Court testimony:</strong> Officials can testify about violations</li>
+              </ul>
+              <p><strong>Coverage:</strong> Unincorporated Orange County</p>
+            </CollapsibleSubsection>
+
+            <p><strong>Important Note:</strong> Code enforcement violations can serve as evidence of uninhabitable conditions in eviction defense cases under FL Stat § 83.51.</p>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="🆘 Emergency Resources & Crisis Support" className="resource-category">
+            <p><strong>When to use these services:</strong> Immediate housing crisis, risk of homelessness, emergency financial assistance, or when you need shelter tonight.</p>
+            
+            <CollapsibleSubsection title="Immediate Emergency Assistance" className="emergency-service">
+              <ul>
+                <li><strong>Homeless Services Network:</strong> (407) 893-0133 - Coordinated entry for emergency shelter</li>
+                <li><strong>Coalition for the Homeless:</strong> Emergency shelter placement, crisis intervention</li>
+                <li><strong>Orange County Social Services:</strong> (407) 836-7200 - Emergency financial assistance</li>
+                <li><strong>Heart of Florida United Way:</strong> 2-1-1 - Crisis resources, emergency referrals</li>
+              </ul>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Emergency Rental Assistance Programs" className="emergency-service">
+              <p><strong>Status Update:</strong> Florida's state ERAP program (OUR FLORIDA) is closed, but local programs may still be available.</p>
+              <ul>
+                <li><strong>Orange County ERAP:</strong> Check current availability at orangecountyfl.net</li>
+                <li><strong>Orlando City ERAP:</strong> Check current availability through city website</li>
+                <li><strong>EPIC Program:</strong> (407) 836-6514 - For families with children facing court eviction</li>
+              </ul>
+              <p><strong>For current ERAP availability:</strong> Call the Florida Legal Services Eviction Prevention Helpline at 1-888-780-0443</p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Utility Assistance" className="emergency-service">
+              <ul>
+                <li><strong>LIHEAP (Low Income Home Energy Assistance):</strong> Through local community action agencies</li>
+                <li><strong>Salvation Army:</strong> Emergency utility assistance</li>
+                <li><strong>Catholic Charities:</strong> Utility bill payment assistance</li>
+                <li><strong>Project Hope:</strong> Through Heart of Florida United Way</li>
+              </ul>
+            </CollapsibleSubsection>
+          </CollapsibleSubsection>
+
+          <CollapsibleSubsection title="📞 Quick Reference - Critical Numbers" className="resource-category emergency-numbers">
+            <p><strong>Save these numbers in your phone:</strong></p>
             <ul>
-              <li><strong>Legal Aid Society of Orange County:</strong> (407) 841-7777</li>
-              <li><strong>Florida Rural Legal Services:</strong> (863) 688-7376</li>
-              <li><strong>Orange County Bar Association:</strong> Lawyer referral service</li>
-              <li><strong>Ninth Judicial Circuit Self-Help:</strong> Forms and guidance</li>
+              <li><strong>🆘 Emergency Shelter:</strong> (407) 893-0133 (Homeless Services Network)</li>
+              <li><strong>⚖️ Legal Emergency:</strong> (407) 841-8310 (Legal Aid Society)</li>
+              <li><strong>🏠 Eviction Help:</strong> 1-888-780-0443 (FL Legal Services Eviction Prevention)</li>
+              <li><strong>📋 Court Forms:</strong> (407) 836-2000 (Orange County Clerk)</li>
+              <li><strong>🏛️ Code Enforcement:</strong> (407) 246-2280 (Orlando) | (407) 836-6200 (Orange County)</li>
+              <li><strong>💰 Crisis Assistance:</strong> 2-1-1 (Heart of Florida United Way)</li>
+              <li><strong>👨‍⚖️ Lawyer Referral:</strong> (407) 422-4537 (Orange County Bar Association)</li>
             </ul>
           </CollapsibleSubsection>
 
-          <CollapsibleSubsection title="Court Information" className="resource-category">
-            <ul>
-              <li><strong>Orange County Clerk of Court:</strong> 425 N Orange Ave, Orlando</li>
-              <li><strong>Phone:</strong> (407) 836-2000</li>
-              <li><strong>Website:</strong> myorangeclerk.com</li>
-              <li><strong>Self-Help Center:</strong> Available for forms and basic guidance</li>
-            </ul>
-          </CollapsibleSubsection>
-
-          <CollapsibleSubsection title="Housing Resources" className="resource-category">
-            <ul>
-              <li><strong>Orange County Housing & Community Development:</strong> (407) 836-5200</li>
-              <li><strong>Heart of Florida United Way:</strong> 2-1-1 (dial 211)</li>
-              <li><strong>Salvation Army:</strong> Emergency assistance</li>
-              <li><strong>Catholic Charities:</strong> Rental assistance programs</li>
-            </ul>
-          </CollapsibleSubsection>
-
-          <CollapsibleSubsection title="Code Enforcement" className="resource-category">
-            <ul>
-              <li><strong>City of Orlando Code Enforcement:</strong> (407) 246-2280</li>
-              <li><strong>Orange County Code Enforcement:</strong> (407) 836-6200</li>
-              <li><strong>File Complaints:</strong> For habitability issues</li>
-              <li><strong>Request Inspections:</strong> Document poor conditions</li>
-            </ul>
-          </CollapsibleSubsection>
-
-          <CollapsibleSubsection title="Emergency Resources" className="resource-category">
-            <ul>
-              <li><strong>Homeless Services Network:</strong> (407) 893-0133</li>
-              <li><strong>Coalition for the Homeless:</strong> Emergency shelter</li>
-              <li><strong>Orange County Social Services:</strong> (407) 836-7200</li>
-              <li><strong>Emergency Rental Assistance:</strong> Check current programs</li>
+          <CollapsibleSubsection title="⚠️ Important Reminders" className="resource-category">
+            <ul className="important-notes-list">
+              <li><strong>Act Quickly:</strong> Many programs have limited funding and waiting lists</li>
+              <li><strong>Gather Documents:</strong> Bring eviction notices, lease agreements, income proof</li>
+              <li><strong>Multiple Resources:</strong> Apply to several programs simultaneously</li>
+              <li><strong>Free Services First:</strong> Start with free legal aid before paying attorneys</li>
+              <li><strong>Document Everything:</strong> Keep records of all contacts and assistance requests</li>
+              <li><strong>Know Your Address:</strong> Some services only cover specific jurisdictions</li>
+              <li><strong>Language Services:</strong> Most organizations provide translation assistance</li>
             </ul>
           </CollapsibleSubsection>
         </div>
