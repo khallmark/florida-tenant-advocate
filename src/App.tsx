@@ -28,7 +28,7 @@ export default function App() {
     <div className="app-container">
       <nav className="nav">
         <div className="nav-container">
-          <h1>Orlando Tenant Advocate</h1>
+          <h1>Florida Tenant Law Defense Tool - Not Legal Advice</h1>
           <div className="nav-links">
             <button 
               className={`nav-button ${currentPage === 'rubric' ? 'active' : ''}`}
