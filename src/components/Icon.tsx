@@ -1,7 +1,7 @@
-import { Info, AlertTriangle, CheckCircle, X, ChevronDown, ChevronRight } from 'lucide-react';
+import { Info, AlertTriangle, CheckCircle, X, ChevronDown, ChevronRight, Edit, Trash2 } from 'lucide-react';
 
 interface IconProps {
-  type: 'info' | 'warning' | 'success' | 'close' | 'chevron-down' | 'chevron-right';
+  type: 'info' | 'warning' | 'success' | 'close' | 'chevron-down' | 'chevron-right' | 'edit' | 'trash';
   size?: number;
   className?: string;
   'aria-label'?: string;
@@ -14,6 +14,8 @@ const iconMap = {
   close: X,
   'chevron-down': ChevronDown,
   'chevron-right': ChevronRight,
+  edit: Edit,
+  trash: Trash2,
 };
 
 export default function Icon({ type, size = 16, className = '', 'aria-label': ariaLabel }: IconProps) {
