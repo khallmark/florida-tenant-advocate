@@ -73,6 +73,9 @@ export default function App() {
             Laws change frequently and this information may be outdated or incorrect. 
             <strong>ALWAYS CONSULT A LICENSED ATTORNEY</strong> for legal advice specific to your situation.
           </div>
+          <div className="critical-warning">
+            <strong>⚖️ CRITICAL NOTICE:</strong> CONTENT ON THIS SITE HAS NOT YET BEEN REVIEWED BY A FLORIDA-LICENSED ATTORNEY. YOU MUST NOT RELY ON THIS TOOL FOR LEGAL ADVICE.
+          </div>
         </div>
       </div>
 
