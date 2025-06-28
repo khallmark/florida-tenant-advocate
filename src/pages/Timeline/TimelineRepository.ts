@@ -94,6 +94,14 @@ export const EVENT_TYPES = [
   'Rent Payment',
   'Communication with Landlord',
   'Maintenance Request',
+  'Tenant Meeting Held',
+  'Union Formation',
+  'Collective Action Initiated',
+  'Retaliation Incident',
+  'Code Enforcement Complaint',
+  'Rent Strike Started',
+  'Escrow Account Deposit',
+  'Attorney Consultation',
   'Other',
 ];
 

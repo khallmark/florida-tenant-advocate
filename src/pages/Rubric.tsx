@@ -268,6 +268,99 @@ const Rubric: React.FC = () => {
         </div>
       </CollapsibleSection>
 
+      <CollapsibleSection title="🤝 Tenant Organizing & Union Rights" defaultOpen={false}>
+        <div className="organizing-rights">
+          <CollapsibleSubsection title="Your Right to Organize" className="organize-category" defaultOpen={true}>
+            <p><strong>Federal & State Protections:</strong> You have fundamental rights to organize with other tenants, protected by the First Amendment and Florida Constitution Article I, Sections 4 & 5.</p>
+            
+            <CollapsibleSubsection title="Protected Activities" className="protected-activities">
+              <ul>
+                <li><strong>Forming Tenant Associations:</strong> You can create or join tenant unions without landlord permission</li>
+                <li><strong>Meeting in Common Areas:</strong> HUD properties must allow tenant meetings (24 C.F.R. §245.115)</li>
+                <li><strong>Door-to-Door Organizing:</strong> Protected speech activity in public areas</li>
+                <li><strong>Collective Bargaining:</strong> Groups of tenants can negotiate together with landlords</li>
+                <li><strong>Rent Strikes:</strong> Legal if rent is paid into court registry or union escrow per FL Stat § 83.60</li>
+              </ul>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Retaliation Protection" className="retaliation-shield">
+              <p><strong>FL Stat § 83.64 Shield:</strong> It is illegal for landlords to retaliate against you for:</p>
+              <ul>
+                <li>Organizing or participating in a tenant organization</li>
+                <li>Complaining to government agencies about code violations</li>
+                <li>Exercising any legal right under the lease or law</li>
+              </ul>
+              <p className="warning-box">
+                <strong>⚠️ Document Everything:</strong> Keep records of all organizing activities and any landlord responses. This creates evidence if you need to raise a retaliation defense.
+              </p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Forming a Tenant Union" className="union-formation">
+              <p><strong>Basic Steps:</strong></p>
+              <ol>
+                <li><strong>Connect with Neighbors:</strong> Start with informal conversations about shared concerns</li>
+                <li><strong>Hold Initial Meeting:</strong> Gather interested tenants to discuss goals</li>
+                <li><strong>Elect Leadership:</strong> Choose representatives democratically</li>
+                <li><strong>Document Membership:</strong> Keep secure records of who's participating</li>
+                <li><strong>Establish Communication:</strong> Set up secure channels (Signal, encrypted email)</li>
+              </ol>
+              <p><strong>Legal Structure Options:</strong></p>
+              <ul>
+                <li><strong>Unincorporated Association:</strong> Simplest form, no filing required</li>
+                <li><strong>Florida Not-for-Profit Corporation:</strong> More formal, provides liability protection</li>
+                <li><strong>501(c)(4) Status:</strong> Allows lobbying and collective action</li>
+              </ul>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Collective Action Tools" className="action-tools">
+              <h4>Legal Rent Withholding Process:</h4>
+              <ol>
+                <li>Document habitability violations with photos/video</li>
+                <li>Send 7-day notice to landlord per FL Stat § 83.60(1)(b)</li>
+                <li>If not fixed, deposit rent into:</li>
+                <ul>
+                  <li>Court registry (individual action)</li>
+                  <li>Union escrow account (collective action)</li>
+                </ul>
+                <li>Continue documenting conditions</li>
+                <li>Negotiate repairs or rent reduction</li>
+              </ol>
+              
+              <h4>Mass Eviction Defense:</h4>
+              <ul>
+                <li><strong>Court Watch:</strong> Pack courtrooms for member hearings</li>
+                <li><strong>Rapid Response:</strong> Emergency assistance for lock-outs</li>
+                <li><strong>Resource Sharing:</strong> Pool funds for court deposits</li>
+                <li><strong>Attorney Coordination:</strong> Bulk representation agreements</li>
+              </ul>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Know Your Limits" className="legal-limits">
+              <p><strong>Avoid These Pitfalls:</strong></p>
+              <ul>
+                <li><strong>Unauthorized Practice of Law:</strong> Non-lawyers cannot give specific legal advice</li>
+                <li><strong>Trespassing:</strong> Respect property boundaries during organizing</li>
+                <li><strong>Defamation:</strong> Stick to verifiable facts about landlords</li>
+                <li><strong>Obstruction:</strong> Don't block entrances or interfere with lawful evictions</li>
+              </ul>
+              <p className="info-box">
+                <strong>💡 Pro Tip:</strong> Always have a designated legal liaison who can quickly connect members with attorneys when needed.
+              </p>
+            </CollapsibleSubsection>
+
+            <CollapsibleSubsection title="Resources for Organizers" className="organizer-resources">
+              <ul>
+                <li><strong>Florida Tenants Union Guide:</strong> Comprehensive organizing manual (see /florida-tenants/)</li>
+                <li><strong>HUD Tenant Participation Funds:</strong> Grants for organizing in HUD properties</li>
+                <li><strong>National Tenant Union Network:</strong> Connect with unions statewide</li>
+                <li><strong>Legal Observer Training:</strong> Document police/landlord actions safely</li>
+              </ul>
+              <p><strong>Emergency Organizer Hotline:</strong> [To be established by local union]</p>
+            </CollapsibleSubsection>
+          </CollapsibleSubsection>
+        </div>
+      </CollapsibleSection>
+
       <CollapsibleSection title="1. I Received a Notice - What Kind Is It?" defaultOpen={true}>
         <div className="notice-types">
           <CollapsibleSubsection title="3-Day Notice (Non-Payment)" className="notice-type" defaultOpen={true}>

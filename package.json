@@ -1,7 +1,7 @@
 {
-  "name": "orlando-tenant-advocate",
+  "name": "florida-tenant-advocate",
   "version": "1.0.0",
-  "description": "",
+  "description": "A tool to help Florida tenants understand their rights and track eviction timelines",
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/index.tsx --bundle --outdir=dist --loader:.css=css --loader:.md=text --minify --sourcemap",
