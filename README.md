@@ -9,6 +9,7 @@
 > 
 > **THIS IS NOT LEGAL ADVICE.** This educational tool does not constitute legal advice, create an attorney-client relationship, or replace qualified legal representation. **If you are facing eviction, contact a Florida-licensed attorney immediately.**
 > ALL CONTENT IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE INFORMATION IS NOT INTENDED TO BE A SUBSTITUTE FOR LEGAL ADVICE. IT IS UNDER ACTIVE DEVELOPMENT AND MAY CONTAIN ERRORS. DO NOT RELY ON THIS TOOL FOR LEGAL ADVICE. THIS IS A BETA VERSION AND MAY CONTAIN ERRORS. I CANNOT GUARANTEE THE ACCURACY OF THE INFORMATION PROVIDED. I AM ACTIVELY WORKING TO HAVE LEGAL REVIEW OF THE CONTENT BUT UNTIL THEN YOU MUST NOT RELY ON THIS TOOL FOR LEGAL ADVICE.
+> CONTENT ON THIS SITE HAS NOT YET BEEN REVIEWED BY A FLORIDA-LICENSED ATTORNEY. YOU MUST NOT RELY ON THIS TOOL FOR LEGAL ADVICE.
 
 ## 📋 Table of Contents
 
@@ -25,7 +26,7 @@
 
 ## 🎯 Mission & Goals
 
-The Orlando Tenant Advocate empowers tenants facing eviction in Orlando, Florida with critical legal education and organizational tools. Our mission is to bridge the knowledge gap between complex landlord-tenant law and real-world tenant needs.
+The Florida Tenant Advocate empowers tenants facing eviction in Florida with critical legal education and organizational tools. Our mission is to bridge the knowledge gap between complex landlord-tenant law and real-world tenant needs.
 
 ### Core Objectives
 - **🎓 Education**: Demystify Florida Statutes Chapter 83 in plain language
@@ -78,25 +79,6 @@ Transform complex landlord-tenant law into actionable guidance:
 - **Visual Warnings**: ⚠️ Critical deadlines highlighted prominently
 - **Union Formation Guide**: Step-by-step tenant organizing instructions
 - **Mobile Responsive**: Access on any device, anywhere
-
-### 🏛️ Florida Tenants Union Guide
-Comprehensive organizing manual for collective tenant power. The guide includes **proactive campaign playbooks** to audit leases for illegal fees, demand safety improvements, and negotiate fair lease terms collectively.
-
-**Union Documentation (`/florida-tenants/`):**
-- **Legal Entity Formation**: Create 501(c)(4) tenant unions with proper structure
-- **Campaign Playbooks**: Go on offense with lease audits and safety campaigns.
-- **Member Rights Arsenal**: Know your protections under FL Stat Ch. 83
-- **Organizing Tactics**: Legal rent strikes, court watches, collective defense
-- **Risk Mitigation**: Avoid SLAPP suits, UPL claims, and retaliation
-- **Digital Security**: Protect member data and communications
-- **Funding Models**: Sustainable financing through dues and grants
-
-**Key Union Features:**
-- ✊ **Collective Bargaining**: Negotiate as a group with landlords
-- 🛡️ **Retaliation Protection**: FL Stat § 83.64 shields organizing activities
-- 💰 **Rent Strike Escrow**: Legal withholding with proper procedures
-- 📢 **Mass Eviction Defense**: Court packing and rapid response networks
-- 🔒 **Secure Communications**: Encrypted channels for member safety
 
 ### ⏰ Timeline Management System
 Document your case with forensic precision:
@@ -275,20 +257,6 @@ We welcome contributions from legal professionals, developers, and advocates who
 | **⚡ Medium** | Accessibility | Screen reader support, keyboard navigation |
 | **🔧 Low** | Features | UI improvements, new tools |
 
-### 📋 Contribution Guidelines
-
-**Legal Content Requirements:**
-- ✅ Must be reviewed by FL-licensed attorney
-- ✅ Include specific statute references  
-- ✅ Use plain language explanations
-- ✅ Mark time-sensitive information clearly
-
-**Technical Standards:**
-- ✅ TypeScript for all new code
-- ✅ Follow existing CSS conventions
-- ✅ Maintain WCAG 2.1 AA compliance
-- ✅ Test on mobile devices
-
 **Getting Started:**
 ```bash
 # Fork the repository
@@ -313,26 +281,6 @@ All legal content contributors must include:
 **MIT License** - Free for educational and non-commercial use.
 
 Full license: [MIT](https://opensource.org/licenses/MIT)
-
-**Legal Content Disclaimer:** While the code is MIT licensed, legal content should only be modified by qualified legal professionals.
-
-## 🔄 Maintenance & Updates
-
-### 📅 Update Schedule
-- **🚨 Legal Content**: Quarterly review by legal professionals
-- **🔧 Technical**: Monthly dependency updates
-- **📱 Accessibility**: Semi-annual compliance audits
-- **📞 Resources**: Annual contact verification
-
-### ⚠️ Accuracy Notice
-**Legal information changes rapidly.** This tool reflects laws as of the last update date. Always verify:
-- Current Florida Statutes Chapter 83
-- Local Orange County court rules  
-- Recent case law developments
-- Contact information accuracy
-
-**Last Legal Review:** [DATE NEEDED]
-**Last Technical Update:** [DATE NEEDED]
 
 ---
 
